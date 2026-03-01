@@ -1,0 +1,74 @@
+services:
+  # --------------------------------------------------------------------------
+  # 1. Gateway & Load Balancer
+  # --------------------------------------------------------------------------
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "80:80"
+    depends_on:
+      - python-ai-core
+    networks:
+      - titan-net
+
+  # --------------------------------------------------------------------------
+  # 2. Redis Cache & DB
+  # --------------------------------------------------------------------------
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - titan-net
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: feast
+    ports:
+      - "5432:5432"
+    networks:
+      - titan-net
+
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    networks:
+      - titan-net
+
+  # --------------------------------------------------------------------------
+  # 3. Application Microservices
+  # --------------------------------------------------------------------------
+  python-ai-core:
+    build:
+      context: ./python_ai_core
+    ports:
+      - "8080:8080"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - GOLANG_RERANK_HOST=golang-rerank:50051
+    depends_on:
+      - redis
+      - golang-rerank
+    networks:
+      - titan-net
+
+  golang-rerank:
+    build:
+      context: ./golang_rerank
+    ports:
+      - "50051:50051"
+    environment:
+      - REDIS_URL=redis:6379
+    depends_on:
+      - redis
+    networks:
+      - titan-net
+
+networks:
+  titan-net:
+    driver: bridge
