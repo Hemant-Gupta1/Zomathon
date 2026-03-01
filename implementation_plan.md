@@ -1,80 +1,37 @@
-# Project Titan: Cart Super Add-On (CSAO) Rail Implementation Plan
+# Project Titan: CSAO Rail Full-Stack Implementation Plan (Ultra-Lightweight Mode)
 
 ## Goal Description
-Build an End-to-End Intelligent Recommendation Architecture targeting sub-200ms latency to maximize conditional probability of acceptance for recommended add-ons. The system involves an NGINX Gateway, Faust/Redis Feature Store, PyTorch/Triton AI Core for a 4-Stage Cascade (GraphSAGE, BERT4Rec, DLRM, Vision/GenAI), and a GoLang Re-Ranking engine.
-
-## Directory Structure
-```
-c:\Zomathon\Zomathon\
-├── docker-compose.yml
-├── .env
-├── gateway/
-│   ├── Dockerfile
-│   └── nginx.conf
-├── feature_store/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   ├── init_feast.py
-│   └── feature_repo/
-│       ├── feature_store.yaml
-│       └── features.py
-├── python_ai_core/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   ├── main.py (FastAPI gateway for core cascade)
-│   └── cascade/
-│       ├── __init__.py
-│       ├── stage1_retrieval.py (Milvus, GraphSAGE, Siamese)
-│       ├── stage2_sequential.py (BERT4Rec)
-│       ├── stage3_ranking.py (DLRM Triton client)
-│       └── component3_multimodal.py (YOLOv8, Swin, BERT, Llama3 RAG)
-├── golang_rerank/
-│   ├── Dockerfile
-│   ├── go.mod
-│   ├── main.go (gRPC Server)
-│   └── rules/
-│       ├── anchoring.go
-│       ├── geospatial.go
-│       └── feedback.go
-└── evaluation/
-    ├── requirements.txt
-    └── evaluate.py
-```
+Build a fully functional and beautiful front-end for the Cart Super Add-On (CSAO) recommendation system and drastically simplify the backend to be as light and fast as possible. The backend uses a 4-Stage simulated ML Funnel (GraphSAGE, BERT4Rec, DLRM) built entirely in Numpy and FAISS to achieve <200ms latency without deep learning GPU overhead.
 
 ## Proposed Changes
-### Root Configurations
-#### [NEW] docker-compose.yml
-Orchestrates:
-- `gateway` (NGINX Load Balancer)
-- `redis-cluster`
-- `postgres-primary` & `postgres-replica`
-- `milvus-standalone`, `etcd`, `minio`
-- `triton-server`
-- `python-ai-core`
-- `golang-rerank`
 
-### Gateway & Feature Store (10ms + 15ms Budget)
-#### [NEW] gateway/nginx.conf
-Configures upstream load balancing to the Python AI Core and sets strict proxy timeouts to maintain the 10ms budget.
-#### [NEW] feature_store/feature_repo/feature_store.yaml & features.py
-Configures Feast with Redis online store and PostgreSQL offline store. Includes logic for Time Cyclical Encoding and Cart Composition scoring.
+### Configuration
+#### [MODIFY] docker-compose.yml
+- Keep ONLY `gateway` (NGINX) and `python-ai-core` (FastAPI). All heavy microservices removed.
 
-### AI Core Microservice (Python/PyTorch - 35ms + 80ms Budget)
-#### [NEW] python_ai_core/main.py
-FastAPI application to act as the central orchestrator. Uses gRPC to communicate with the GoLang Re-Ranker. Implements the circuit breaker falling back to Redis if latency > 250ms.
-#### [NEW] python_ai_core/cascade/stage1_retrieval.py
-Outlines Milvus HNSW indexing, GraphSAGE implementation, and Siamese Triplet loss structures.
-#### [NEW] python_ai_core/cascade/stage2_sequential.py
-BERT4Rec implementation with Self-Attention.
-#### [NEW] python_ai_core/cascade/stage3_ranking.py
-DLRM Ranking with Focal loss setup and Triton Server inference calls.
-#### [NEW] python_ai_core/cascade/component3_multimodal.py
-Stubs for YOLOv8, Swin Transformers, and Llama 3 QLoRA integration.
+### Gateway & Frontend
+#### [MODIFY] gateway/nginx.conf
+- Update NGINX to serve static HTML/JS/CSS frontend files directly, and proxy API requests to `python-ai-core`.
+#### [MODIFY] gateway/html/
+- Frontend natively displays a Glassmorphic UI, a live clock, dynamic sizing and real-time cart handling.
+- Implements Reject Recommendation functionality (`/api/v1/reject`).
 
-### Business Logic Re-Ranking (GoLang - 20ms Budget)
-#### [NEW] golang_rerank/main.go & child files
-GoLang gRPC service exposing the re-ranking logic. Implements Price Anchoring, Geohash filtering, Google Routes proximity (<500m), and a 7-day Redis Bloom Filter block-list.
+### AI Core Microservice (Python)
+#### [MODIFY] python_ai_core/main.py
+- Load CSVs directly into Pandas. Expose `/api/v1/users`, `/api/v1/items`, `/api/v1/recommend`, and `/api/v1/reject` endpoints.
+#### Stage 1: Retrieval (GraphSAGE + Siamese)
+- Pre-compute item embeddings (based on simulated Graph paths and Siamese category-matching combinations) on startup. Load into Faiss HNSW index.
+- Given a cart item, retrieve top 200 Fast nearest neighbors.
+#### Stage 2: Sequence (BERT4Rec)
+- Implement a scaled dot-product attention function computing context vector across `cart_items` to predict the next compatible item embedding.
+#### Stage 3: Ranking (DLRM & NLP)
+- Compute dot product between User (ID+Demographics) and Item (Visual+ID) mock vectors. Map outputs using simulated probabilities mimicking Focal Loss behavior (focusing on rare cross-additions).
+- **NLP Text Integration**: Simulates a BERT extraction on item names. If "Spicy" or "Masala" is detected, cross-references with a generated user "Spice Tolerance" metric to boost or penalize the DLRM score.
+#### Stage 4: Business Logic
+- Filter the top 50 ranked items forcing Price Anchoring <= 40% cart value.
+- Track meal timings (Breakfast/Lunch/Dinner) and Cart Sizes (Small/High package).
+- Store user rejected items to omit them from future outputs.
+- Append tags like "Trending in area" to popular candidates.
 
-### Evaluation Framework
-#### [NEW] evaluation/evaluate.py
-Python script calculating AUC, NDCG@K, Precision@K, Recall@K, AOV Lift, and Cart-to-Order Ratio.
+### Documentation & Cleanup
+- Update instructions for how to run `docker-compose up` and view the live website. All unused files (`feature_store`, `golang_rerank`, `pdf`s) were deleted to achieve an ultra-light workspace.

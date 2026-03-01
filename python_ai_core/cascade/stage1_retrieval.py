@@ -29,37 +29,3 @@ def faiss_retrieve(user_id: str, current_cart: List[str]) -> List[str]:
     
     # Return mapped item IDs (Simulated mapping)
     return [f"I{(i % 300) + 1:04d}" for i in indices[0]]
-
-# PyTorch stubs for the Siamese / GraphSAGE models
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-class SiameseItemNet(nn.Module):
-    def __init__(self, emb_dim=64):
-        super().__init__()
-        self.fc = nn.Sequential(
-            nn.Linear(128, 64),
-            nn.ReLU(),
-            nn.Linear(64, emb_dim)
-        )
-        
-    def forward_one(self, x):
-        return self.fc(x)
-
-    def forward(self, anchor, pos, neg):
-        a_out = self.forward_one(anchor)
-        p_out = self.forward_one(pos)
-        n_out = self.forward_one(neg)
-        return a_out, p_out, n_out
-
-class TripletLoss(nn.Module):
-    def __init__(self, margin=1.0):
-        super(TripletLoss, self).__init__()
-        self.margin = margin
-        
-    def forward(self, anchor, positive, negative):
-        dist_pos = (anchor - positive).pow(2).sum(1)
-        dist_neg = (anchor - negative).pow(2).sum(1)
-        loss = F.relu(dist_pos - dist_neg + self.margin)
-        return loss.mean()

@@ -1,301 +1,301 @@
-ItemID,RestID,Name,Price_INR,Is_Veg,Category,Image_URL
-I0001,R003,Simulated Dessert 1,246,1,Dessert,/img/mock_1.jpg
-I0002,R014,Simulated Main Course 2,44,1,Main Course,/img/mock_2.jpg
-I0003,R003,Simulated Dessert 3,69,0,Dessert,/img/mock_3.jpg
-I0004,R021,Simulated Beverage 4,39,1,Beverage,/img/mock_4.jpg
-I0005,R008,Simulated Misc 5,315,0,Misc,/img/mock_5.jpg
-I0006,R023,Simulated Sides 6,261,1,Sides,/img/mock_6.jpg
-I0007,R023,Simulated Main Course 7,74,0,Main Course,/img/mock_7.jpg
-I0008,R047,Simulated Starter 8,142,0,Starter,/img/mock_8.jpg
-I0009,R037,Simulated Dessert 9,180,1,Dessert,/img/mock_9.jpg
-I0010,R038,Simulated Misc 10,53,1,Misc,/img/mock_10.jpg
-I0011,R017,Simulated Bread 11,198,1,Bread,/img/mock_11.jpg
-I0012,R002,Simulated Starter 12,460,1,Starter,/img/mock_12.jpg
-I0013,R039,Simulated Beverage 13,907,0,Beverage,/img/mock_13.jpg
-I0014,R043,Simulated Sides 14,830,1,Sides,/img/mock_14.jpg
-I0015,R006,Simulated Misc 15,44,0,Misc,/img/mock_15.jpg
-I0016,R045,Simulated Main Course 16,210,1,Main Course,/img/mock_16.jpg
-I0017,R039,Simulated Misc 17,491,0,Misc,/img/mock_17.jpg
-I0018,R046,Simulated Bread 18,222,1,Bread,/img/mock_18.jpg
-I0019,R015,Simulated Dessert 19,418,0,Dessert,/img/mock_19.jpg
-I0020,R035,Simulated Dessert 20,226,1,Dessert,/img/mock_20.jpg
-I0021,R027,Simulated Sides 21,75,0,Sides,/img/mock_21.jpg
-I0022,R029,Simulated Beverage 22,140,0,Beverage,/img/mock_22.jpg
-I0023,R020,Simulated Beverage 23,389,1,Beverage,/img/mock_23.jpg
-I0024,R038,Simulated Beverage 24,147,1,Beverage,/img/mock_24.jpg
-I0025,R030,Simulated Misc 25,526,0,Misc,/img/mock_25.jpg
-I0026,R039,Simulated Main Course 26,530,0,Main Course,/img/mock_26.jpg
-I0027,R050,Simulated Beverage 27,103,1,Beverage,/img/mock_27.jpg
-I0028,R027,Simulated Main Course 28,514,0,Main Course,/img/mock_28.jpg
-I0029,R009,Simulated Misc 29,199,0,Misc,/img/mock_29.jpg
-I0030,R013,Simulated Misc 30,171,1,Misc,/img/mock_30.jpg
-I0031,R046,Simulated Bread 31,30,0,Bread,/img/mock_31.jpg
-I0032,R014,Simulated Misc 32,206,0,Misc,/img/mock_32.jpg
-I0033,R002,Simulated Starter 33,265,1,Starter,/img/mock_33.jpg
-I0034,R030,Simulated Dessert 34,123,0,Dessert,/img/mock_34.jpg
-I0035,R046,Simulated Beverage 35,307,1,Beverage,/img/mock_35.jpg
-I0036,R023,Simulated Sides 36,63,0,Sides,/img/mock_36.jpg
-I0037,R043,Simulated Sides 37,182,0,Sides,/img/mock_37.jpg
-I0038,R050,Simulated Beverage 38,225,1,Beverage,/img/mock_38.jpg
-I0039,R003,Simulated Bread 39,71,0,Bread,/img/mock_39.jpg
-I0040,R040,Simulated Sides 40,307,1,Sides,/img/mock_40.jpg
-I0041,R048,Simulated Beverage 41,71,1,Beverage,/img/mock_41.jpg
-I0042,R016,Simulated Starter 42,346,1,Starter,/img/mock_42.jpg
-I0043,R006,Simulated Main Course 43,195,1,Main Course,/img/mock_43.jpg
-I0044,R031,Simulated Starter 44,138,0,Starter,/img/mock_44.jpg
-I0045,R009,Simulated Main Course 45,343,1,Main Course,/img/mock_45.jpg
-I0046,R033,Simulated Dessert 46,141,1,Dessert,/img/mock_46.jpg
-I0047,R035,Simulated Main Course 47,150,0,Main Course,/img/mock_47.jpg
-I0048,R041,Simulated Misc 48,55,1,Misc,/img/mock_48.jpg
-I0049,R004,Simulated Sides 49,83,0,Sides,/img/mock_49.jpg
-I0050,R045,Simulated Sides 50,148,1,Sides,/img/mock_50.jpg
-I0051,R046,Simulated Misc 51,62,1,Misc,/img/mock_51.jpg
-I0052,R026,Simulated Misc 52,216,1,Misc,/img/mock_52.jpg
-I0053,R008,Simulated Bread 53,120,1,Bread,/img/mock_53.jpg
-I0054,R036,Simulated Bread 54,127,1,Bread,/img/mock_54.jpg
-I0055,R026,Simulated Misc 55,58,1,Misc,/img/mock_55.jpg
-I0056,R046,Simulated Main Course 56,319,1,Main Course,/img/mock_56.jpg
-I0057,R032,Simulated Sides 57,204,1,Sides,/img/mock_57.jpg
-I0058,R020,Simulated Sides 58,100,0,Sides,/img/mock_58.jpg
-I0059,R003,Simulated Dessert 59,370,0,Dessert,/img/mock_59.jpg
-I0060,R018,Simulated Starter 60,1006,0,Starter,/img/mock_60.jpg
-I0061,R009,Simulated Bread 61,95,1,Bread,/img/mock_61.jpg
-I0062,R048,Simulated Misc 62,122,1,Misc,/img/mock_62.jpg
-I0063,R014,Simulated Misc 63,218,1,Misc,/img/mock_63.jpg
-I0064,R041,Simulated Bread 64,85,1,Bread,/img/mock_64.jpg
-I0065,R031,Simulated Sides 65,31,1,Sides,/img/mock_65.jpg
-I0066,R033,Simulated Main Course 66,162,1,Main Course,/img/mock_66.jpg
-I0067,R018,Simulated Sides 67,86,0,Sides,/img/mock_67.jpg
-I0068,R038,Simulated Beverage 68,232,0,Beverage,/img/mock_68.jpg
-I0069,R026,Simulated Dessert 69,152,1,Dessert,/img/mock_69.jpg
-I0070,R011,Simulated Sides 70,139,1,Sides,/img/mock_70.jpg
-I0071,R026,Simulated Bread 71,658,1,Bread,/img/mock_71.jpg
-I0072,R050,Simulated Misc 72,219,1,Misc,/img/mock_72.jpg
-I0073,R040,Simulated Beverage 73,190,0,Beverage,/img/mock_73.jpg
-I0074,R024,Simulated Beverage 74,90,1,Beverage,/img/mock_74.jpg
-I0075,R039,Simulated Main Course 75,163,1,Main Course,/img/mock_75.jpg
-I0076,R042,Simulated Bread 76,97,1,Bread,/img/mock_76.jpg
-I0077,R028,Simulated Sides 77,106,1,Sides,/img/mock_77.jpg
-I0078,R043,Simulated Starter 78,97,0,Starter,/img/mock_78.jpg
-I0079,R008,Simulated Dessert 79,69,0,Dessert,/img/mock_79.jpg
-I0080,R032,Simulated Dessert 80,315,1,Dessert,/img/mock_80.jpg
-I0081,R001,Simulated Main Course 81,82,1,Main Course,/img/mock_81.jpg
-I0082,R007,Simulated Starter 82,30,1,Starter,/img/mock_82.jpg
-I0083,R017,Simulated Dessert 83,69,1,Dessert,/img/mock_83.jpg
-I0084,R044,Simulated Sides 84,175,1,Sides,/img/mock_84.jpg
-I0085,R044,Simulated Sides 85,123,1,Sides,/img/mock_85.jpg
-I0086,R047,Simulated Sides 86,324,0,Sides,/img/mock_86.jpg
-I0087,R016,Simulated Starter 87,243,1,Starter,/img/mock_87.jpg
-I0088,R049,Simulated Beverage 88,179,1,Beverage,/img/mock_88.jpg
-I0089,R011,Simulated Starter 89,63,0,Starter,/img/mock_89.jpg
-I0090,R012,Simulated Sides 90,467,1,Sides,/img/mock_90.jpg
-I0091,R029,Simulated Bread 91,96,1,Bread,/img/mock_91.jpg
-I0092,R024,Simulated Misc 92,107,1,Misc,/img/mock_92.jpg
-I0093,R031,Simulated Sides 93,929,0,Sides,/img/mock_93.jpg
-I0094,R043,Simulated Misc 94,52,1,Misc,/img/mock_94.jpg
-I0095,R003,Simulated Sides 95,69,1,Sides,/img/mock_95.jpg
-I0096,R037,Simulated Misc 96,94,1,Misc,/img/mock_96.jpg
-I0097,R028,Simulated Misc 97,183,1,Misc,/img/mock_97.jpg
-I0098,R050,Simulated Dessert 98,183,1,Dessert,/img/mock_98.jpg
-I0099,R026,Simulated Main Course 99,107,0,Main Course,/img/mock_99.jpg
-I0100,R029,Simulated Sides 100,389,1,Sides,/img/mock_100.jpg
-I0101,R002,Simulated Misc 101,351,0,Misc,/img/mock_101.jpg
-I0102,R002,Simulated Dessert 102,974,1,Dessert,/img/mock_102.jpg
-I0103,R033,Simulated Dessert 103,106,1,Dessert,/img/mock_103.jpg
-I0104,R003,Simulated Main Course 104,195,1,Main Course,/img/mock_104.jpg
-I0105,R019,Simulated Bread 105,972,1,Bread,/img/mock_105.jpg
-I0106,R032,Simulated Dessert 106,254,0,Dessert,/img/mock_106.jpg
-I0107,R029,Simulated Main Course 107,268,1,Main Course,/img/mock_107.jpg
-I0108,R015,Simulated Sides 108,68,0,Sides,/img/mock_108.jpg
-I0109,R002,Simulated Bread 109,94,1,Bread,/img/mock_109.jpg
-I0110,R011,Simulated Main Course 110,62,0,Main Course,/img/mock_110.jpg
-I0111,R019,Simulated Starter 111,194,1,Starter,/img/mock_111.jpg
-I0112,R027,Simulated Misc 112,609,1,Misc,/img/mock_112.jpg
-I0113,R048,Simulated Dessert 113,166,0,Dessert,/img/mock_113.jpg
-I0114,R023,Simulated Bread 114,95,1,Bread,/img/mock_114.jpg
-I0115,R012,Simulated Bread 115,42,1,Bread,/img/mock_115.jpg
-I0116,R039,Simulated Starter 116,378,1,Starter,/img/mock_116.jpg
-I0117,R023,Simulated Main Course 117,110,1,Main Course,/img/mock_117.jpg
-I0118,R031,Simulated Bread 118,108,0,Bread,/img/mock_118.jpg
-I0119,R014,Simulated Dessert 119,255,0,Dessert,/img/mock_119.jpg
-I0120,R014,Simulated Misc 120,235,0,Misc,/img/mock_120.jpg
-I0121,R042,Simulated Starter 121,148,1,Starter,/img/mock_121.jpg
-I0122,R015,Simulated Sides 122,110,1,Sides,/img/mock_122.jpg
-I0123,R041,Simulated Dessert 123,282,0,Dessert,/img/mock_123.jpg
-I0124,R050,Simulated Starter 124,216,1,Starter,/img/mock_124.jpg
-I0125,R046,Simulated Sides 125,262,0,Sides,/img/mock_125.jpg
-I0126,R014,Simulated Beverage 126,262,0,Beverage,/img/mock_126.jpg
-I0127,R013,Simulated Beverage 127,199,1,Beverage,/img/mock_127.jpg
-I0128,R004,Simulated Dessert 128,390,1,Dessert,/img/mock_128.jpg
-I0129,R025,Simulated Beverage 129,175,0,Beverage,/img/mock_129.jpg
-I0130,R024,Simulated Starter 130,249,1,Starter,/img/mock_130.jpg
-I0131,R049,Simulated Misc 131,81,1,Misc,/img/mock_131.jpg
-I0132,R036,Simulated Beverage 132,350,0,Beverage,/img/mock_132.jpg
-I0133,R004,Simulated Main Course 133,805,0,Main Course,/img/mock_133.jpg
-I0134,R025,Simulated Misc 134,73,1,Misc,/img/mock_134.jpg
-I0135,R019,Simulated Bread 135,63,0,Bread,/img/mock_135.jpg
-I0136,R025,Simulated Misc 136,30,1,Misc,/img/mock_136.jpg
-I0137,R008,Simulated Sides 137,46,0,Sides,/img/mock_137.jpg
-I0138,R021,Simulated Dessert 138,112,1,Dessert,/img/mock_138.jpg
-I0139,R005,Simulated Sides 139,96,0,Sides,/img/mock_139.jpg
-I0140,R027,Simulated Bread 140,499,1,Bread,/img/mock_140.jpg
-I0141,R049,Simulated Main Course 141,307,1,Main Course,/img/mock_141.jpg
-I0142,R033,Simulated Beverage 142,82,1,Beverage,/img/mock_142.jpg
-I0143,R015,Simulated Beverage 143,251,1,Beverage,/img/mock_143.jpg
-I0144,R025,Simulated Bread 144,83,0,Bread,/img/mock_144.jpg
-I0145,R037,Simulated Dessert 145,231,1,Dessert,/img/mock_145.jpg
-I0146,R018,Simulated Bread 146,108,0,Bread,/img/mock_146.jpg
-I0147,R008,Simulated Sides 147,175,1,Sides,/img/mock_147.jpg
-I0148,R042,Simulated Misc 148,194,1,Misc,/img/mock_148.jpg
-I0149,R010,Simulated Bread 149,30,0,Bread,/img/mock_149.jpg
-I0150,R007,Simulated Dessert 150,118,0,Dessert,/img/mock_150.jpg
-I0151,R038,Simulated Bread 151,66,1,Bread,/img/mock_151.jpg
-I0152,R019,Simulated Misc 152,58,1,Misc,/img/mock_152.jpg
-I0153,R012,Simulated Starter 153,313,1,Starter,/img/mock_153.jpg
-I0154,R022,Simulated Bread 154,121,1,Bread,/img/mock_154.jpg
-I0155,R024,Simulated Starter 155,142,1,Starter,/img/mock_155.jpg
-I0156,R006,Simulated Main Course 156,269,0,Main Course,/img/mock_156.jpg
-I0157,R046,Simulated Starter 157,78,0,Starter,/img/mock_157.jpg
-I0158,R041,Simulated Beverage 158,295,1,Beverage,/img/mock_158.jpg
-I0159,R030,Simulated Misc 159,131,1,Misc,/img/mock_159.jpg
-I0160,R031,Simulated Misc 160,85,1,Misc,/img/mock_160.jpg
-I0161,R022,Simulated Bread 161,361,1,Bread,/img/mock_161.jpg
-I0162,R020,Simulated Beverage 162,88,0,Beverage,/img/mock_162.jpg
-I0163,R018,Simulated Sides 163,88,1,Sides,/img/mock_163.jpg
-I0164,R047,Simulated Bread 164,110,1,Bread,/img/mock_164.jpg
-I0165,R004,Simulated Sides 165,606,0,Sides,/img/mock_165.jpg
-I0166,R047,Simulated Beverage 166,45,1,Beverage,/img/mock_166.jpg
-I0167,R006,Simulated Main Course 167,373,1,Main Course,/img/mock_167.jpg
-I0168,R023,Simulated Starter 168,121,1,Starter,/img/mock_168.jpg
-I0169,R007,Simulated Beverage 169,143,1,Beverage,/img/mock_169.jpg
-I0170,R018,Simulated Main Course 170,113,0,Main Course,/img/mock_170.jpg
-I0171,R014,Simulated Dessert 171,418,0,Dessert,/img/mock_171.jpg
-I0172,R024,Simulated Bread 172,697,1,Bread,/img/mock_172.jpg
-I0173,R007,Simulated Bread 173,272,1,Bread,/img/mock_173.jpg
-I0174,R020,Simulated Beverage 174,495,1,Beverage,/img/mock_174.jpg
-I0175,R017,Simulated Bread 175,111,0,Bread,/img/mock_175.jpg
-I0176,R023,Simulated Beverage 176,99,0,Beverage,/img/mock_176.jpg
-I0177,R011,Simulated Bread 177,334,1,Bread,/img/mock_177.jpg
-I0178,R019,Simulated Starter 178,116,1,Starter,/img/mock_178.jpg
-I0179,R025,Simulated Misc 179,370,1,Misc,/img/mock_179.jpg
-I0180,R028,Simulated Beverage 180,228,1,Beverage,/img/mock_180.jpg
-I0181,R024,Simulated Bread 181,791,1,Bread,/img/mock_181.jpg
-I0182,R022,Simulated Starter 182,118,1,Starter,/img/mock_182.jpg
-I0183,R020,Simulated Beverage 183,118,1,Beverage,/img/mock_183.jpg
-I0184,R010,Simulated Misc 184,373,0,Misc,/img/mock_184.jpg
-I0185,R002,Simulated Main Course 185,30,1,Main Course,/img/mock_185.jpg
-I0186,R015,Simulated Main Course 186,592,0,Main Course,/img/mock_186.jpg
-I0187,R041,Simulated Beverage 187,597,0,Beverage,/img/mock_187.jpg
-I0188,R006,Simulated Dessert 188,61,0,Dessert,/img/mock_188.jpg
-I0189,R042,Simulated Misc 189,31,1,Misc,/img/mock_189.jpg
-I0190,R014,Simulated Sides 190,149,0,Sides,/img/mock_190.jpg
-I0191,R018,Simulated Main Course 191,254,1,Main Course,/img/mock_191.jpg
-I0192,R039,Simulated Misc 192,31,1,Misc,/img/mock_192.jpg
-I0193,R037,Simulated Bread 193,100,1,Bread,/img/mock_193.jpg
-I0194,R037,Simulated Dessert 194,189,0,Dessert,/img/mock_194.jpg
-I0195,R033,Simulated Beverage 195,128,0,Beverage,/img/mock_195.jpg
-I0196,R021,Simulated Dessert 196,175,0,Dessert,/img/mock_196.jpg
-I0197,R034,Simulated Bread 197,40,0,Bread,/img/mock_197.jpg
-I0198,R046,Simulated Sides 198,248,1,Sides,/img/mock_198.jpg
-I0199,R050,Simulated Main Course 199,91,1,Main Course,/img/mock_199.jpg
-I0200,R026,Simulated Beverage 200,45,0,Beverage,/img/mock_200.jpg
-I0201,R033,Simulated Bread 201,127,0,Bread,/img/mock_201.jpg
-I0202,R014,Simulated Beverage 202,85,1,Beverage,/img/mock_202.jpg
-I0203,R048,Simulated Misc 203,200,0,Misc,/img/mock_203.jpg
-I0204,R031,Simulated Misc 204,139,0,Misc,/img/mock_204.jpg
-I0205,R023,Simulated Starter 205,427,1,Starter,/img/mock_205.jpg
-I0206,R019,Simulated Dessert 206,61,1,Dessert,/img/mock_206.jpg
-I0207,R048,Simulated Sides 207,241,1,Sides,/img/mock_207.jpg
-I0208,R017,Simulated Bread 208,124,1,Bread,/img/mock_208.jpg
-I0209,R048,Simulated Misc 209,224,1,Misc,/img/mock_209.jpg
-I0210,R019,Simulated Sides 210,307,0,Sides,/img/mock_210.jpg
-I0211,R049,Simulated Dessert 211,164,1,Dessert,/img/mock_211.jpg
-I0212,R027,Simulated Beverage 212,158,1,Beverage,/img/mock_212.jpg
-I0213,R042,Simulated Beverage 213,106,1,Beverage,/img/mock_213.jpg
-I0214,R012,Simulated Main Course 214,157,1,Main Course,/img/mock_214.jpg
-I0215,R049,Simulated Sides 215,519,1,Sides,/img/mock_215.jpg
-I0216,R050,Simulated Bread 216,140,0,Bread,/img/mock_216.jpg
-I0217,R013,Simulated Misc 217,156,0,Misc,/img/mock_217.jpg
-I0218,R018,Simulated Dessert 218,331,0,Dessert,/img/mock_218.jpg
-I0219,R045,Simulated Dessert 219,177,1,Dessert,/img/mock_219.jpg
-I0220,R046,Simulated Main Course 220,447,0,Main Course,/img/mock_220.jpg
-I0221,R036,Simulated Beverage 221,359,0,Beverage,/img/mock_221.jpg
-I0222,R003,Simulated Dessert 222,166,1,Dessert,/img/mock_222.jpg
-I0223,R023,Simulated Misc 223,129,1,Misc,/img/mock_223.jpg
-I0224,R010,Simulated Sides 224,305,1,Sides,/img/mock_224.jpg
-I0225,R010,Simulated Bread 225,60,0,Bread,/img/mock_225.jpg
-I0226,R015,Simulated Misc 226,30,1,Misc,/img/mock_226.jpg
-I0227,R011,Simulated Starter 227,319,1,Starter,/img/mock_227.jpg
-I0228,R026,Simulated Starter 228,78,0,Starter,/img/mock_228.jpg
-I0229,R028,Simulated Starter 229,314,0,Starter,/img/mock_229.jpg
-I0230,R017,Simulated Beverage 230,98,0,Beverage,/img/mock_230.jpg
-I0231,R026,Simulated Sides 231,47,1,Sides,/img/mock_231.jpg
-I0232,R007,Simulated Main Course 232,1104,1,Main Course,/img/mock_232.jpg
-I0233,R047,Simulated Main Course 233,53,1,Main Course,/img/mock_233.jpg
-I0234,R019,Simulated Starter 234,36,1,Starter,/img/mock_234.jpg
-I0235,R020,Simulated Bread 235,149,0,Bread,/img/mock_235.jpg
-I0236,R014,Simulated Beverage 236,269,1,Beverage,/img/mock_236.jpg
-I0237,R047,Simulated Beverage 237,189,0,Beverage,/img/mock_237.jpg
-I0238,R005,Simulated Dessert 238,37,1,Dessert,/img/mock_238.jpg
-I0239,R043,Simulated Sides 239,324,1,Sides,/img/mock_239.jpg
-I0240,R021,Simulated Beverage 240,70,0,Beverage,/img/mock_240.jpg
-I0241,R026,Simulated Bread 241,715,1,Bread,/img/mock_241.jpg
-I0242,R016,Simulated Starter 242,71,1,Starter,/img/mock_242.jpg
-I0243,R046,Simulated Beverage 243,277,1,Beverage,/img/mock_243.jpg
-I0244,R024,Simulated Beverage 244,121,0,Beverage,/img/mock_244.jpg
-I0245,R035,Simulated Sides 245,548,0,Sides,/img/mock_245.jpg
-I0246,R032,Simulated Bread 246,348,1,Bread,/img/mock_246.jpg
-I0247,R025,Simulated Starter 247,251,1,Starter,/img/mock_247.jpg
-I0248,R015,Simulated Beverage 248,171,0,Beverage,/img/mock_248.jpg
-I0249,R019,Simulated Main Course 249,587,1,Main Course,/img/mock_249.jpg
-I0250,R035,Simulated Dessert 250,309,1,Dessert,/img/mock_250.jpg
-I0251,R050,Simulated Sides 251,136,1,Sides,/img/mock_251.jpg
-I0252,R007,Simulated Bread 252,63,1,Bread,/img/mock_252.jpg
-I0253,R020,Simulated Misc 253,372,0,Misc,/img/mock_253.jpg
-I0254,R001,Simulated Bread 254,108,1,Bread,/img/mock_254.jpg
-I0255,R032,Simulated Beverage 255,198,0,Beverage,/img/mock_255.jpg
-I0256,R038,Simulated Sides 256,127,1,Sides,/img/mock_256.jpg
-I0257,R019,Simulated Dessert 257,142,1,Dessert,/img/mock_257.jpg
-I0258,R029,Simulated Bread 258,187,1,Bread,/img/mock_258.jpg
-I0259,R008,Simulated Main Course 259,109,0,Main Course,/img/mock_259.jpg
-I0260,R006,Simulated Bread 260,935,0,Bread,/img/mock_260.jpg
-I0261,R036,Simulated Sides 261,71,1,Sides,/img/mock_261.jpg
-I0262,R043,Simulated Main Course 262,103,1,Main Course,/img/mock_262.jpg
-I0263,R050,Simulated Dessert 263,92,1,Dessert,/img/mock_263.jpg
-I0264,R036,Simulated Sides 264,248,1,Sides,/img/mock_264.jpg
-I0265,R049,Simulated Bread 265,241,1,Bread,/img/mock_265.jpg
-I0266,R011,Simulated Bread 266,307,1,Bread,/img/mock_266.jpg
-I0267,R034,Simulated Main Course 267,69,1,Main Course,/img/mock_267.jpg
-I0268,R034,Simulated Beverage 268,238,1,Beverage,/img/mock_268.jpg
-I0269,R025,Simulated Sides 269,100,0,Sides,/img/mock_269.jpg
-I0270,R022,Simulated Main Course 270,124,0,Main Course,/img/mock_270.jpg
-I0271,R017,Simulated Misc 271,128,1,Misc,/img/mock_271.jpg
-I0272,R031,Simulated Dessert 272,424,1,Dessert,/img/mock_272.jpg
-I0273,R035,Simulated Starter 273,302,1,Starter,/img/mock_273.jpg
-I0274,R012,Simulated Beverage 274,426,0,Beverage,/img/mock_274.jpg
-I0275,R040,Simulated Main Course 275,97,0,Main Course,/img/mock_275.jpg
-I0276,R045,Simulated Sides 276,47,0,Sides,/img/mock_276.jpg
-I0277,R025,Simulated Starter 277,55,0,Starter,/img/mock_277.jpg
-I0278,R038,Simulated Beverage 278,247,1,Beverage,/img/mock_278.jpg
-I0279,R018,Simulated Starter 279,767,1,Starter,/img/mock_279.jpg
-I0280,R013,Simulated Beverage 280,361,0,Beverage,/img/mock_280.jpg
-I0281,R024,Simulated Misc 281,390,1,Misc,/img/mock_281.jpg
-I0282,R038,Simulated Starter 282,96,1,Starter,/img/mock_282.jpg
-I0283,R039,Simulated Main Course 283,44,1,Main Course,/img/mock_283.jpg
-I0284,R042,Simulated Beverage 284,78,1,Beverage,/img/mock_284.jpg
-I0285,R015,Simulated Sides 285,49,0,Sides,/img/mock_285.jpg
-I0286,R037,Simulated Starter 286,161,1,Starter,/img/mock_286.jpg
-I0287,R022,Simulated Sides 287,95,0,Sides,/img/mock_287.jpg
-I0288,R014,Simulated Main Course 288,1312,0,Main Course,/img/mock_288.jpg
-I0289,R021,Simulated Bread 289,293,0,Bread,/img/mock_289.jpg
-I0290,R001,Simulated Bread 290,94,1,Bread,/img/mock_290.jpg
-I0291,R035,Simulated Starter 291,70,1,Starter,/img/mock_291.jpg
-I0292,R027,Simulated Sides 292,47,1,Sides,/img/mock_292.jpg
-I0293,R023,Simulated Main Course 293,43,1,Main Course,/img/mock_293.jpg
-I0294,R042,Simulated Sides 294,61,1,Sides,/img/mock_294.jpg
-I0295,R030,Simulated Sides 295,45,1,Sides,/img/mock_295.jpg
-I0296,R024,Simulated Misc 296,198,0,Misc,/img/mock_296.jpg
-I0297,R050,Simulated Main Course 297,39,0,Main Course,/img/mock_297.jpg
-I0298,R013,Simulated Bread 298,861,1,Bread,/img/mock_298.jpg
-I0299,R021,Simulated Main Course 299,185,0,Main Course,/img/mock_299.jpg
-I0300,R027,Simulated Dessert 300,246,0,Dessert,/img/mock_300.jpg
+ItemID,RestID,Name,Price_INR,Is_Veg,Category,Image_URL,Meal_Time,Size
+I0001,R003,Gajar Ka Halwa,186,1,Dessert,/img/mock_1.jpg,Any,High
+I0002,R014,Spicy Classic Kadai Paneer,309,1,Main Course,/img/mock_2.jpg,Breakfast,Low
+I0003,R003,Special Jalebi,113,0,Dessert,/img/mock_3.jpg,Any,High
+I0004,R021,Fresh Lime Soda,131,1,Beverage,/img/mock_4.jpg,Breakfast,Medium
+I0005,R008,Idli Sambar,222,0,Misc,/img/mock_5.jpg,Breakfast,Low
+I0006,R023,Roasted Papad,40,1,Sides,/img/mock_6.jpg,Dinner,Medium
+I0007,R023,Premium Paneer Tikka Masala,525,0,Main Course,/img/mock_7.jpg,Lunch,Medium
+I0008,R047,Paneer Tikka,153,0,Starter,/img/mock_8.jpg,Breakfast,High
+I0009,R037,Spicy Gulab Jamun,196,1,Dessert,/img/mock_9.jpg,Lunch,High
+I0010,R038,Spicy Masala Dosa,246,1,Misc,/img/mock_10.jpg,Lunch,High
+I0011,R017,Garlic Naan,95,1,Bread,/img/mock_11.jpg,Dinner,Low
+I0012,R002,Spicy Classic Aloo Tikki,350,1,Starter,/img/mock_12.jpg,Dinner,High
+I0013,R039,Filter Coffee,175,0,Beverage,/img/mock_13.jpg,Breakfast,High
+I0014,R043,Classic Mixed Raita,55,1,Sides,/img/mock_14.jpg,Breakfast,Low
+I0015,R006,Special Chole Bhature,284,0,Misc,/img/mock_15.jpg,Lunch,High
+I0016,R045,Spicy Premium Kadai Paneer,370,1,Main Course,/img/mock_16.jpg,Dinner,Low
+I0017,R039,Spicy Special Idli Sambar,157,0,Misc,/img/mock_17.jpg,Lunch,High
+I0018,R046,Classic Tandoori Roti,40,1,Bread,/img/mock_18.jpg,Breakfast,Low
+I0019,R015,Rasmalai,166,0,Dessert,/img/mock_19.jpg,Dinner,High
+I0020,R035,Classic Rasmalai,210,1,Dessert,/img/mock_20.jpg,Breakfast,Medium
+I0021,R027,Spicy Boondi Raita,87,0,Sides,/img/mock_21.jpg,Any,High
+I0022,R029,Fresh Lime Soda,72,0,Beverage,/img/mock_22.jpg,Breakfast,High
+I0023,R020,Fresh Lime Soda,54,1,Beverage,/img/mock_23.jpg,Breakfast,Medium
+I0024,R038,Classic Fresh Lime Soda,85,1,Beverage,/img/mock_24.jpg,Breakfast,Medium
+I0025,R030,Veg Biryani,265,0,Misc,/img/mock_25.jpg,Any,Medium
+I0026,R039,Premium Chicken Curry,282,0,Main Course,/img/mock_26.jpg,Lunch,Medium
+I0027,R050,Classic Fresh Lime Soda,141,1,Beverage,/img/mock_27.jpg,Dinner,High
+I0028,R027,Mix Veg Curry,278,0,Main Course,/img/mock_28.jpg,Any,Low
+I0029,R009,Classic Masala Dosa,259,0,Misc,/img/mock_29.jpg,Lunch,Low
+I0030,R013,Special Pav Bhaji,168,1,Misc,/img/mock_30.jpg,Lunch,Medium
+I0031,R046,Spicy Lachha Paratha,88,0,Bread,/img/mock_31.jpg,Breakfast,Low
+I0032,R014,Classic Veg Biryani,252,0,Misc,/img/mock_32.jpg,Any,High
+I0033,R002,Chilly Chicken,354,1,Starter,/img/mock_33.jpg,Any,Low
+I0034,R030,Spicy Gajar Ka Halwa,188,0,Dessert,/img/mock_34.jpg,Breakfast,Medium
+I0035,R046,Iced Tea,169,1,Beverage,/img/mock_35.jpg,Dinner,High
+I0036,R023,Green Salad,100,0,Sides,/img/mock_36.jpg,Breakfast,High
+I0037,R043,Special Green Salad,109,0,Sides,/img/mock_37.jpg,Lunch,Medium
+I0038,R050,Masala Chai,142,1,Beverage,/img/mock_38.jpg,Breakfast,Low
+I0039,R003,Garlic Naan,88,0,Bread,/img/mock_39.jpg,Breakfast,Medium
+I0040,R040,Roasted Papad,102,1,Sides,/img/mock_40.jpg,Dinner,Medium
+I0041,R048,Classic Fresh Lime Soda,61,1,Beverage,/img/mock_41.jpg,Any,Medium
+I0042,R016,Spicy Samosa,171,1,Starter,/img/mock_42.jpg,Any,Medium
+I0043,R006,Premium Dal Makhani,436,1,Main Course,/img/mock_43.jpg,Dinner,Low
+I0044,R031,Premium Samosa,184,0,Starter,/img/mock_44.jpg,Breakfast,Medium
+I0045,R009,Spicy Classic Chicken Curry,405,1,Main Course,/img/mock_45.jpg,Any,Medium
+I0046,R033,Jalebi,208,1,Dessert,/img/mock_46.jpg,Breakfast,Low
+I0047,R035,Spicy Mix Veg Curry,320,0,Main Course,/img/mock_47.jpg,Breakfast,Low
+I0048,R041,Spicy Veg Biryani,178,1,Misc,/img/mock_48.jpg,Any,Medium
+I0049,R004,Spicy Roasted Papad,88,0,Sides,/img/mock_49.jpg,Breakfast,Medium
+I0050,R045,Spicy Masala Papad,93,1,Sides,/img/mock_50.jpg,Breakfast,Medium
+I0051,R046,Premium Vada Pav,191,1,Misc,/img/mock_51.jpg,Any,Low
+I0052,R026,Spicy Idli Sambar,147,1,Misc,/img/mock_52.jpg,Lunch,Medium
+I0053,R008,Premium Roomali Roti,60,1,Bread,/img/mock_53.jpg,Dinner,Medium
+I0054,R036,Special Tandoori Roti,64,1,Bread,/img/mock_54.jpg,Breakfast,Low
+I0055,R026,Spicy Special Pav Bhaji,217,1,Misc,/img/mock_55.jpg,Dinner,Low
+I0056,R046,Spicy Premium Butter Chicken,324,1,Main Course,/img/mock_56.jpg,Any,Low
+I0057,R032,Premium Boondi Raita,64,1,Sides,/img/mock_57.jpg,Dinner,Low
+I0058,R020,Classic Roasted Papad,79,0,Sides,/img/mock_58.jpg,Any,Medium
+I0059,R003,Classic Ice Cream,84,0,Dessert,/img/mock_59.jpg,Breakfast,High
+I0060,R018,Special Samosa,367,0,Starter,/img/mock_60.jpg,Dinner,Low
+I0061,R009,Special Plain Naan,97,1,Bread,/img/mock_61.jpg,Breakfast,Low
+I0062,R048,Veg Biryani,130,1,Misc,/img/mock_62.jpg,Dinner,Low
+I0063,R014,Spicy Vada Pav,266,1,Misc,/img/mock_63.jpg,Breakfast,Medium
+I0064,R041,Special Plain Naan,32,1,Bread,/img/mock_64.jpg,Breakfast,Low
+I0065,R031,Green Salad,118,1,Sides,/img/mock_65.jpg,Lunch,High
+I0066,R033,Classic Kadai Paneer,455,1,Main Course,/img/mock_66.jpg,Any,Medium
+I0067,R018,Masala Papad,72,0,Sides,/img/mock_67.jpg,Lunch,Medium
+I0068,R038,Fresh Lime Soda,174,0,Beverage,/img/mock_68.jpg,Any,Low
+I0069,R026,Jalebi,134,1,Dessert,/img/mock_69.jpg,Lunch,Medium
+I0070,R011,Roasted Papad,111,1,Sides,/img/mock_70.jpg,Lunch,Medium
+I0071,R026,Spicy Garlic Naan,57,1,Bread,/img/mock_71.jpg,Dinner,High
+I0072,R050,Spicy Pav Bhaji,163,1,Misc,/img/mock_72.jpg,Any,Medium
+I0073,R040,Premium Mojito,108,0,Beverage,/img/mock_73.jpg,Any,Low
+I0074,R024,Premium Filter Coffee,53,1,Beverage,/img/mock_74.jpg,Lunch,Low
+I0075,R039,Special Paneer Tikka Masala,515,1,Main Course,/img/mock_75.jpg,Any,Medium
+I0076,R042,Butter Naan,60,1,Bread,/img/mock_76.jpg,Dinner,High
+I0077,R028,Green Salad,60,1,Sides,/img/mock_77.jpg,Breakfast,Medium
+I0078,R043,Premium Paneer Tikka,195,0,Starter,/img/mock_78.jpg,Lunch,Medium
+I0079,R008,Premium Kulfi,194,0,Dessert,/img/mock_79.jpg,Dinner,High
+I0080,R032,Special Gajar Ka Halwa,138,1,Dessert,/img/mock_80.jpg,Dinner,Medium
+I0081,R001,Special Paneer Tikka Masala,482,1,Main Course,/img/mock_81.jpg,Any,Low
+I0082,R007,Spicy Classic Fish Finger,235,1,Starter,/img/mock_82.jpg,Lunch,High
+I0083,R017,Chocolate Brownie,155,1,Dessert,/img/mock_83.jpg,Lunch,Low
+I0084,R044,Mixed Raita,62,1,Sides,/img/mock_84.jpg,Dinner,High
+I0085,R044,Special Green Salad,114,1,Sides,/img/mock_85.jpg,Breakfast,Low
+I0086,R047,Spicy Masala Papad,91,0,Sides,/img/mock_86.jpg,Dinner,High
+I0087,R016,Classic Samosa,205,1,Starter,/img/mock_87.jpg,Breakfast,Low
+I0088,R049,Masala Chai,128,1,Beverage,/img/mock_88.jpg,Breakfast,Low
+I0089,R011,Aloo Tikki,258,0,Starter,/img/mock_89.jpg,Breakfast,High
+I0090,R012,Spicy Roasted Papad,114,1,Sides,/img/mock_90.jpg,Any,Medium
+I0091,R029,Special Plain Naan,51,1,Bread,/img/mock_91.jpg,Lunch,Medium
+I0092,R024,Spicy Veg Biryani,141,1,Misc,/img/mock_92.jpg,Breakfast,High
+I0093,R031,Spicy Boondi Raita,66,0,Sides,/img/mock_93.jpg,Dinner,Low
+I0094,R043,Special Masala Dosa,243,1,Misc,/img/mock_94.jpg,Dinner,Medium
+I0095,R003,Special Masala Papad,48,1,Sides,/img/mock_95.jpg,Breakfast,Low
+I0096,R037,Vada Pav,138,1,Misc,/img/mock_96.jpg,Breakfast,Low
+I0097,R028,Spicy Idli Sambar,262,1,Misc,/img/mock_97.jpg,Any,Low
+I0098,R050,Gajar Ka Halwa,214,1,Dessert,/img/mock_98.jpg,Lunch,Low
+I0099,R026,Spicy Butter Chicken,586,0,Main Course,/img/mock_99.jpg,Breakfast,Medium
+I0100,R029,Masala Papad,49,1,Sides,/img/mock_100.jpg,Breakfast,Low
+I0101,R002,Spicy Classic Chicken Biryani,275,0,Misc,/img/mock_101.jpg,Lunch,Low
+I0102,R002,Premium Gulab Jamun,224,1,Dessert,/img/mock_102.jpg,Any,Low
+I0103,R033,Ice Cream,111,1,Dessert,/img/mock_103.jpg,Any,Low
+I0104,R003,Spicy Mix Veg Curry,524,1,Main Course,/img/mock_104.jpg,Any,Low
+I0105,R019,Special Roomali Roti,100,1,Bread,/img/mock_105.jpg,Any,Low
+I0106,R032,Premium Rasmalai,172,0,Dessert,/img/mock_106.jpg,Dinner,Medium
+I0107,R029,Classic Paneer Tikka Masala,439,1,Main Course,/img/mock_107.jpg,Lunch,High
+I0108,R015,Premium Boondi Raita,81,0,Sides,/img/mock_108.jpg,Lunch,High
+I0109,R002,Premium Roomali Roti,47,1,Bread,/img/mock_109.jpg,Any,Medium
+I0110,R011,Special Paneer Tikka Masala,265,0,Main Course,/img/mock_110.jpg,Breakfast,Medium
+I0111,R019,Samosa,257,1,Starter,/img/mock_111.jpg,Dinner,High
+I0112,R027,Spicy Pav Bhaji,231,1,Misc,/img/mock_112.jpg,Dinner,High
+I0113,R048,Ice Cream,98,0,Dessert,/img/mock_113.jpg,Any,Medium
+I0114,R023,Special Lachha Paratha,97,1,Bread,/img/mock_114.jpg,Lunch,Medium
+I0115,R012,Tandoori Roti,26,1,Bread,/img/mock_115.jpg,Lunch,Low
+I0116,R039,Spicy Onion Bhaji,306,1,Starter,/img/mock_116.jpg,Any,Medium
+I0117,R023,Chana Masala,531,1,Main Course,/img/mock_117.jpg,Lunch,Low
+I0118,R031,Special Lachha Paratha,64,0,Bread,/img/mock_118.jpg,Any,Medium
+I0119,R014,Rasmalai,207,0,Dessert,/img/mock_119.jpg,Any,Medium
+I0120,R014,Spicy Idli Sambar,188,0,Misc,/img/mock_120.jpg,Lunch,Medium
+I0121,R042,Fish Finger,326,1,Starter,/img/mock_121.jpg,Dinner,High
+I0122,R015,Special Masala Papad,57,1,Sides,/img/mock_122.jpg,Any,High
+I0123,R041,Classic Gulab Jamun,223,0,Dessert,/img/mock_123.jpg,Any,High
+I0124,R050,Spicy Classic Chicken Tikka,330,1,Starter,/img/mock_124.jpg,Lunch,Low
+I0125,R046,Boondi Raita,109,0,Sides,/img/mock_125.jpg,Any,Low
+I0126,R014,Spicy Filter Coffee,130,0,Beverage,/img/mock_126.jpg,Dinner,Low
+I0127,R013,Spicy Mojito,125,1,Beverage,/img/mock_127.jpg,Any,Low
+I0128,R004,Premium Rasmalai,119,1,Dessert,/img/mock_128.jpg,Breakfast,High
+I0129,R025,Special Mango Lassi,151,0,Beverage,/img/mock_129.jpg,Any,Low
+I0130,R024,Premium Aloo Tikki,303,1,Starter,/img/mock_130.jpg,Any,Medium
+I0131,R049,Premium Chicken Biryani,221,1,Misc,/img/mock_131.jpg,Breakfast,Medium
+I0132,R036,Spicy Fresh Lime Soda,65,0,Beverage,/img/mock_132.jpg,Dinner,High
+I0133,R004,Spicy Special Chicken Curry,401,0,Main Course,/img/mock_133.jpg,Any,High
+I0134,R025,Spicy Chicken Biryani,222,1,Misc,/img/mock_134.jpg,Dinner,Low
+I0135,R019,Classic Lachha Paratha,33,0,Bread,/img/mock_135.jpg,Any,Low
+I0136,R025,Spicy Masala Dosa,228,1,Misc,/img/mock_136.jpg,Any,High
+I0137,R008,Boondi Raita,40,0,Sides,/img/mock_137.jpg,Dinner,High
+I0138,R021,Premium Gajar Ka Halwa,129,1,Dessert,/img/mock_138.jpg,Lunch,Low
+I0139,R005,Classic Green Salad,70,0,Sides,/img/mock_139.jpg,Dinner,Low
+I0140,R027,Premium Roomali Roti,25,1,Bread,/img/mock_140.jpg,Breakfast,Medium
+I0141,R049,Spicy Classic Chicken Curry,560,1,Main Course,/img/mock_141.jpg,Any,Medium
+I0142,R033,Spicy Mojito,149,1,Beverage,/img/mock_142.jpg,Breakfast,Low
+I0143,R015,Fresh Lime Soda,95,1,Beverage,/img/mock_143.jpg,Lunch,High
+I0144,R025,Lachha Paratha,71,0,Bread,/img/mock_144.jpg,Lunch,High
+I0145,R037,Spicy Chocolate Brownie,177,1,Dessert,/img/mock_145.jpg,Lunch,Low
+I0146,R018,Classic Butter Naan,44,0,Bread,/img/mock_146.jpg,Dinner,Medium
+I0147,R008,Special Boondi Raita,61,1,Sides,/img/mock_147.jpg,Breakfast,Medium
+I0148,R042,Premium Pav Bhaji,266,1,Misc,/img/mock_148.jpg,Any,Low
+I0149,R010,Premium Lachha Paratha,79,0,Bread,/img/mock_149.jpg,Dinner,Low
+I0150,R007,Premium Ice Cream,243,0,Dessert,/img/mock_150.jpg,Breakfast,Low
+I0151,R038,Plain Naan,57,1,Bread,/img/mock_151.jpg,Dinner,High
+I0152,R019,Premium Chole Bhature,171,1,Misc,/img/mock_152.jpg,Breakfast,Medium
+I0153,R012,Special Fish Finger,217,1,Starter,/img/mock_153.jpg,Dinner,Low
+I0154,R022,Classic Plain Naan,93,1,Bread,/img/mock_154.jpg,Any,High
+I0155,R024,Spicy Premium Spring Rolls,153,1,Starter,/img/mock_155.jpg,Lunch,High
+I0156,R006,Classic Paneer Tikka Masala,399,0,Main Course,/img/mock_156.jpg,Breakfast,High
+I0157,R046,Spicy Samosa,161,0,Starter,/img/mock_157.jpg,Breakfast,Medium
+I0158,R041,Iced Tea,166,1,Beverage,/img/mock_158.jpg,Dinner,High
+I0159,R030,Chole Bhature,132,1,Misc,/img/mock_159.jpg,Any,High
+I0160,R031,Special Veg Biryani,234,1,Misc,/img/mock_160.jpg,Any,High
+I0161,R022,Spicy Garlic Naan,72,1,Bread,/img/mock_161.jpg,Any,Low
+I0162,R020,Masala Chai,78,0,Beverage,/img/mock_162.jpg,Lunch,High
+I0163,R018,Mixed Raita,101,1,Sides,/img/mock_163.jpg,Dinner,Low
+I0164,R047,Missi Roti,39,1,Bread,/img/mock_164.jpg,Any,Low
+I0165,R004,Premium Mixed Raita,109,0,Sides,/img/mock_165.jpg,Lunch,High
+I0166,R047,Special Masala Chai,145,1,Beverage,/img/mock_166.jpg,Any,Low
+I0167,R006,Spicy Premium Butter Chicken,498,1,Main Course,/img/mock_167.jpg,Breakfast,High
+I0168,R023,Classic Paneer Tikka,216,1,Starter,/img/mock_168.jpg,Breakfast,Medium
+I0169,R007,Premium Mojito,118,1,Beverage,/img/mock_169.jpg,Any,Medium
+I0170,R018,Paneer Tikka Masala,347,0,Main Course,/img/mock_170.jpg,Dinner,Low
+I0171,R014,Rasmalai,211,0,Dessert,/img/mock_171.jpg,Dinner,Medium
+I0172,R024,Spicy Butter Naan,84,1,Bread,/img/mock_172.jpg,Dinner,Medium
+I0173,R007,Premium Garlic Naan,93,1,Bread,/img/mock_173.jpg,Dinner,Medium
+I0174,R020,Premium Mojito,98,1,Beverage,/img/mock_174.jpg,Breakfast,Low
+I0175,R017,Classic Missi Roti,94,0,Bread,/img/mock_175.jpg,Breakfast,Medium
+I0176,R023,Classic Mojito,190,0,Beverage,/img/mock_176.jpg,Lunch,Low
+I0177,R011,Garlic Naan,92,1,Bread,/img/mock_177.jpg,Breakfast,Medium
+I0178,R019,Spicy Seekh Kebab,223,1,Starter,/img/mock_178.jpg,Any,Low
+I0179,R025,Premium Veg Biryani,230,1,Misc,/img/mock_179.jpg,Breakfast,Medium
+I0180,R028,Classic Mojito,109,1,Beverage,/img/mock_180.jpg,Dinner,Low
+I0181,R024,Missi Roti,44,1,Bread,/img/mock_181.jpg,Dinner,Low
+I0182,R022,Onion Bhaji,349,1,Starter,/img/mock_182.jpg,Lunch,High
+I0183,R020,Special Masala Chai,55,1,Beverage,/img/mock_183.jpg,Dinner,Low
+I0184,R010,Spicy Idli Sambar,226,0,Misc,/img/mock_184.jpg,Dinner,Medium
+I0185,R002,Spicy Chana Masala,357,1,Main Course,/img/mock_185.jpg,Any,Medium
+I0186,R015,Spicy Mix Veg Curry,438,0,Main Course,/img/mock_186.jpg,Breakfast,High
+I0187,R041,Iced Tea,103,0,Beverage,/img/mock_187.jpg,Any,Low
+I0188,R006,Premium Kulfi,174,0,Dessert,/img/mock_188.jpg,Dinner,High
+I0189,R042,Veg Biryani,100,1,Misc,/img/mock_189.jpg,Breakfast,Low
+I0190,R014,Classic Boondi Raita,57,0,Sides,/img/mock_190.jpg,Any,Medium
+I0191,R018,Premium Mix Veg Curry,373,1,Main Course,/img/mock_191.jpg,Any,Medium
+I0192,R039,Premium Vada Pav,223,1,Misc,/img/mock_192.jpg,Breakfast,Low
+I0193,R037,Lachha Paratha,81,1,Bread,/img/mock_193.jpg,Lunch,Medium
+I0194,R037,Gajar Ka Halwa,189,0,Dessert,/img/mock_194.jpg,Any,Medium
+I0195,R033,Spicy Fresh Lime Soda,85,0,Beverage,/img/mock_195.jpg,Lunch,High
+I0196,R021,Special Jalebi,219,0,Dessert,/img/mock_196.jpg,Breakfast,Low
+I0197,R034,Premium Missi Roti,27,0,Bread,/img/mock_197.jpg,Dinner,Medium
+I0198,R046,Masala Papad,110,1,Sides,/img/mock_198.jpg,Lunch,High
+I0199,R050,Spicy Dal Makhani,250,1,Main Course,/img/mock_199.jpg,Dinner,Medium
+I0200,R026,Premium Filter Coffee,59,0,Beverage,/img/mock_200.jpg,Any,High
+I0201,R033,Butter Naan,42,0,Bread,/img/mock_201.jpg,Any,Low
+I0202,R014,Spicy Mojito,196,1,Beverage,/img/mock_202.jpg,Lunch,Low
+I0203,R048,Spicy Masala Dosa,236,0,Misc,/img/mock_203.jpg,Lunch,High
+I0204,R031,Special Chole Bhature,226,0,Misc,/img/mock_204.jpg,Dinner,Low
+I0205,R023,Classic Chicken Tikka,252,1,Starter,/img/mock_205.jpg,Breakfast,Medium
+I0206,R019,Special Chocolate Brownie,208,1,Dessert,/img/mock_206.jpg,Lunch,Low
+I0207,R048,Special Green Salad,105,1,Sides,/img/mock_207.jpg,Lunch,Medium
+I0208,R017,Garlic Naan,63,1,Bread,/img/mock_208.jpg,Any,High
+I0209,R048,Special Vada Pav,131,1,Misc,/img/mock_209.jpg,Any,Low
+I0210,R019,Classic Boondi Raita,52,0,Sides,/img/mock_210.jpg,Breakfast,Medium
+I0211,R049,Spicy Jalebi,245,1,Dessert,/img/mock_211.jpg,Breakfast,High
+I0212,R027,Premium Sweet Lassi,159,1,Beverage,/img/mock_212.jpg,Breakfast,Medium
+I0213,R042,Special Cold Coffee,200,1,Beverage,/img/mock_213.jpg,Breakfast,Low
+I0214,R012,Premium Chicken Curry,585,1,Main Course,/img/mock_214.jpg,Dinner,Low
+I0215,R049,Spicy Mixed Raita,91,1,Sides,/img/mock_215.jpg,Lunch,High
+I0216,R050,Classic Roomali Roti,83,0,Bread,/img/mock_216.jpg,Breakfast,Low
+I0217,R013,Classic Chicken Biryani,299,0,Misc,/img/mock_217.jpg,Dinner,High
+I0218,R018,Kulfi,206,0,Dessert,/img/mock_218.jpg,Dinner,Low
+I0219,R045,Chocolate Brownie,137,1,Dessert,/img/mock_219.jpg,Breakfast,Low
+I0220,R046,Kadai Paneer,345,0,Main Course,/img/mock_220.jpg,Lunch,Medium
+I0221,R036,Premium Filter Coffee,72,0,Beverage,/img/mock_221.jpg,Any,High
+I0222,R003,Special Ice Cream,93,1,Dessert,/img/mock_222.jpg,Lunch,Low
+I0223,R023,Spicy Special Chicken Biryani,296,1,Misc,/img/mock_223.jpg,Lunch,Medium
+I0224,R010,Spicy Boondi Raita,75,1,Sides,/img/mock_224.jpg,Any,High
+I0225,R010,Premium Plain Naan,85,0,Bread,/img/mock_225.jpg,Breakfast,High
+I0226,R015,Premium Idli Sambar,193,1,Misc,/img/mock_226.jpg,Breakfast,Low
+I0227,R011,Premium Samosa,220,1,Starter,/img/mock_227.jpg,Lunch,Low
+I0228,R026,Chilly Chicken,346,0,Starter,/img/mock_228.jpg,Lunch,High
+I0229,R028,Spicy Fish Finger,275,0,Starter,/img/mock_229.jpg,Breakfast,High
+I0230,R017,Spicy Mojito,59,0,Beverage,/img/mock_230.jpg,Breakfast,Medium
+I0231,R026,Classic Mixed Raita,89,1,Sides,/img/mock_231.jpg,Lunch,Medium
+I0232,R007,Classic Mix Veg Curry,515,1,Main Course,/img/mock_232.jpg,Any,Medium
+I0233,R047,Chana Masala,385,1,Main Course,/img/mock_233.jpg,Breakfast,High
+I0234,R019,Premium Samosa,326,1,Starter,/img/mock_234.jpg,Lunch,Medium
+I0235,R020,Spicy Roomali Roti,54,0,Bread,/img/mock_235.jpg,Breakfast,Low
+I0236,R014,Filter Coffee,182,1,Beverage,/img/mock_236.jpg,Dinner,Medium
+I0237,R047,Spicy Sweet Lassi,75,0,Beverage,/img/mock_237.jpg,Breakfast,High
+I0238,R005,Classic Chocolate Brownie,216,1,Dessert,/img/mock_238.jpg,Dinner,Low
+I0239,R043,Special Boondi Raita,108,1,Sides,/img/mock_239.jpg,Any,Medium
+I0240,R021,Classic Cold Coffee,103,0,Beverage,/img/mock_240.jpg,Lunch,Medium
+I0241,R026,Spicy Plain Naan,26,1,Bread,/img/mock_241.jpg,Any,Low
+I0242,R016,Onion Bhaji,174,1,Starter,/img/mock_242.jpg,Any,Medium
+I0243,R046,Premium Iced Tea,66,1,Beverage,/img/mock_243.jpg,Lunch,High
+I0244,R024,Spicy Cold Coffee,85,0,Beverage,/img/mock_244.jpg,Any,High
+I0245,R035,Classic Masala Papad,90,0,Sides,/img/mock_245.jpg,Lunch,Low
+I0246,R032,Premium Tandoori Roti,99,1,Bread,/img/mock_246.jpg,Breakfast,High
+I0247,R025,Classic Onion Bhaji,301,1,Starter,/img/mock_247.jpg,Dinner,Low
+I0248,R015,Special Iced Tea,164,0,Beverage,/img/mock_248.jpg,Dinner,Medium
+I0249,R019,Chicken Curry,279,1,Main Course,/img/mock_249.jpg,Dinner,Low
+I0250,R035,Classic Ice Cream,113,1,Dessert,/img/mock_250.jpg,Any,Medium
+I0251,R050,Green Salad,90,1,Sides,/img/mock_251.jpg,Breakfast,Medium
+I0252,R007,Roomali Roti,73,1,Bread,/img/mock_252.jpg,Breakfast,Low
+I0253,R020,Special Masala Dosa,260,0,Misc,/img/mock_253.jpg,Lunch,High
+I0254,R001,Spicy Missi Roti,26,1,Bread,/img/mock_254.jpg,Breakfast,Medium
+I0255,R032,Iced Tea,200,0,Beverage,/img/mock_255.jpg,Lunch,Medium
+I0256,R038,Classic Green Salad,109,1,Sides,/img/mock_256.jpg,Lunch,Medium
+I0257,R019,Spicy Gajar Ka Halwa,165,1,Dessert,/img/mock_257.jpg,Breakfast,Low
+I0258,R029,Classic Missi Roti,48,1,Bread,/img/mock_258.jpg,Dinner,High
+I0259,R008,Special Chana Masala,491,0,Main Course,/img/mock_259.jpg,Breakfast,Medium
+I0260,R006,Special Butter Naan,85,0,Bread,/img/mock_260.jpg,Lunch,Low
+I0261,R036,Classic Boondi Raita,68,1,Sides,/img/mock_261.jpg,Breakfast,High
+I0262,R043,Classic Chana Masala,465,1,Main Course,/img/mock_262.jpg,Dinner,Medium
+I0263,R050,Gajar Ka Halwa,99,1,Dessert,/img/mock_263.jpg,Breakfast,Medium
+I0264,R036,Green Salad,81,1,Sides,/img/mock_264.jpg,Dinner,Medium
+I0265,R049,Spicy Missi Roti,97,1,Bread,/img/mock_265.jpg,Breakfast,High
+I0266,R011,Lachha Paratha,29,1,Bread,/img/mock_266.jpg,Any,Low
+I0267,R034,Classic Mix Veg Curry,369,1,Main Course,/img/mock_267.jpg,Any,Low
+I0268,R034,Special Mango Lassi,137,1,Beverage,/img/mock_268.jpg,Breakfast,Medium
+I0269,R025,Green Salad,107,0,Sides,/img/mock_269.jpg,Dinner,Medium
+I0270,R022,Paneer Tikka Masala,502,0,Main Course,/img/mock_270.jpg,Dinner,Medium
+I0271,R017,Veg Biryani,253,1,Misc,/img/mock_271.jpg,Any,High
+I0272,R031,Rasmalai,220,1,Dessert,/img/mock_272.jpg,Lunch,Medium
+I0273,R035,Spicy Classic Samosa,178,1,Starter,/img/mock_273.jpg,Dinner,High
+I0274,R012,Premium Masala Chai,125,0,Beverage,/img/mock_274.jpg,Lunch,Medium
+I0275,R040,Mutton Rogan Josh,556,0,Main Course,/img/mock_275.jpg,Any,High
+I0276,R045,Premium Mixed Raita,97,0,Sides,/img/mock_276.jpg,Any,Medium
+I0277,R025,Paneer Tikka,325,0,Starter,/img/mock_277.jpg,Breakfast,High
+I0278,R038,Sweet Lassi,65,1,Beverage,/img/mock_278.jpg,Dinner,High
+I0279,R018,Special Samosa,299,1,Starter,/img/mock_279.jpg,Lunch,Low
+I0280,R013,Special Masala Chai,182,0,Beverage,/img/mock_280.jpg,Breakfast,High
+I0281,R024,Spicy Classic Pav Bhaji,124,1,Misc,/img/mock_281.jpg,Breakfast,Low
+I0282,R038,Spicy Classic Aloo Tikki,298,1,Starter,/img/mock_282.jpg,Any,Low
+I0283,R039,Premium Paneer Tikka Masala,447,1,Main Course,/img/mock_283.jpg,Breakfast,High
+I0284,R042,Classic Iced Tea,141,1,Beverage,/img/mock_284.jpg,Any,High
+I0285,R015,Premium Boondi Raita,101,0,Sides,/img/mock_285.jpg,Breakfast,Low
+I0286,R037,Chilly Chicken,369,1,Starter,/img/mock_286.jpg,Dinner,High
+I0287,R022,Classic Mixed Raita,110,0,Sides,/img/mock_287.jpg,Breakfast,High
+I0288,R014,Chana Masala,257,0,Main Course,/img/mock_288.jpg,Breakfast,Medium
+I0289,R021,Roomali Roti,84,0,Bread,/img/mock_289.jpg,Breakfast,High
+I0290,R001,Plain Naan,21,1,Bread,/img/mock_290.jpg,Lunch,Low
+I0291,R035,Spicy Onion Bhaji,250,1,Starter,/img/mock_291.jpg,Breakfast,High
+I0292,R027,Premium Mixed Raita,68,1,Sides,/img/mock_292.jpg,Lunch,Medium
+I0293,R023,Spicy Special Mutton Rogan Josh,572,1,Main Course,/img/mock_293.jpg,Any,Low
+I0294,R042,Special Masala Papad,67,1,Sides,/img/mock_294.jpg,Dinner,Low
+I0295,R030,Premium Masala Papad,62,1,Sides,/img/mock_295.jpg,Dinner,High
+I0296,R024,Spicy Premium Idli Sambar,111,0,Misc,/img/mock_296.jpg,Lunch,Medium
+I0297,R050,Classic Mix Veg Curry,380,0,Main Course,/img/mock_297.jpg,Breakfast,Medium
+I0298,R013,Classic Lachha Paratha,32,1,Bread,/img/mock_298.jpg,Any,Medium
+I0299,R021,Special Kadai Paneer,433,0,Main Course,/img/mock_299.jpg,Any,High
+I0300,R027,Gulab Jamun,163,0,Dessert,/img/mock_300.jpg,Any,High

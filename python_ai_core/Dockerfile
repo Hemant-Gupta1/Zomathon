@@ -1,10 +1,13 @@
-FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
+FROM python:3.10-slim
 
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
+# 1. Install ONLY the core light dependencies. PyTorch removed for speed constraints.
+COPY requirements.txt .
+RUN pip install --default-timeout=2000 --retries=10 --no-cache-dir -r requirements.txt
+
+# 2. Copy project files
 COPY . .
 
 EXPOSE 8080
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["python", "main.py"]

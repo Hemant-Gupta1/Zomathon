@@ -1,68 +1,71 @@
-# Project Titan: Cart Super Add-On (CSAO) Rail (Lean Local Dev Mode)
+# Project Titan: Cart Super Add-On (CSAO) Rail
 
-## E2E Intelligent Recommendation System Architecture
-This repository contains the architecture and scaffolding for the Project Titan CSAO Rail, which aims to maximize the conditional probability of acceptance for recommended meal add-ons under a strict 200ms budget limit.
+## E2E Intelligent Recommendation System Architecture (Ultra-Lightweight Mode)
 
-### ⚠️ Lightweight Local Dev Mode
-This system has been modified from full production specifications to run on strictly limited local dev hardware.
-- **Triton Inference Server** has been dropped. PyTorch models (DLRM/BERT4Rec) run locally in-memory within the Python FastAPI process.
-- **Milvus Vector DB** has been dropped. It is replaced by an embedded in-memory FAISS HNSW instance inside the Python core.
-- **Postgres Replicas** have been dropped. A single Master PostgreSQL instance is used.
+### ⚡ Platform Multi-Tenant Architecture
+- **In-Memory Core + Redis Caching**: Heavy databases are removed. CSV Data is evaluated natively through Pandas inside the `python-ai-core`. **Redis** is natively attached to the container network to instantly cache `Search Results` and `User Sessions` for rapid retrieval.
+- **Unified 4-Stage Scoped Logic Container**: Uses FAISS CPU and Numpy mathematics to process logic in <200ms:
+  - **Stage 1 (Retrieval)**: Simulated GraphSAGE and Siamese embeddings via FAISS (HNSW) indexing. Filtered securely by active **Restaurant Scope**.
+  - **Stage 2 (Sequence)**: Simulated BERT4Rec scaled dot-product attention to predict context gaps based strictly on a user's active sub-cart.
+  - **Stage 3 (Ranking - DLRM & NLP)**: Simulated DLRM focal loss predictions calculating user-feature dot product intersections. Integrates **NLP Text Embeddings** parsing keywords like "Spicy", cross-referencing them against a simulated User Spice Tolerance hash.
+  - **Stage 4 (Business Logic)**: Limits price (`<= 40% Cart Value`), respects `Package Size`, respects strict `Restaurant Boundaries`, and promotes "Hero" ratings.
+- **Premium Multi-View Frontend**: NGINX serves a beautiful, pristine full-stack application supporting stateful Javascript.
+  - **Authentication**: Supports Customer login and Restaurant Owner login.
+  - **Owner Dashboard (CRUD)**: Restaurants can natively Create, Delete, and Update their menus via API endpoints syncing back to the Pandas backbone.
+  - **Global User Matrix**: Customers can globally search, filter by Veg/Non-Veg, dive into specific Restaurant Menus, and receive purely bounded AI cart recommendations.
 
-## Architecture Structure
-The project is split into the following containerized sub-components:
-- **`gateway/`**: NGINX Load Balancer routing to core microservices (10ms budget). Single MongoDB container runs adjacent to this for general metadata.
-- **`feature_store/`**: Feast implementation backed by a single Redis & Postgres DB containing feature logic like Time-Cyclical encoding (15ms budget).
-- **`python_ai_core/`**: The FastAPI central brain connecting the 4-stage cascade (115ms budget total). 
-  - Stage 1: GraphSAGE & Embedded FAISS HNSW retrieval
-  - Stage 2: BERT4Rec sequential modeling (local PyTorch)
-  - Stage 3: DLRM via local PyTorch inference
-  - Component 3: Multimodal CV extracts and Llama 3 gen-AI explanations.
-- **`golang_rerank/`**: Business logic rules engine (20ms budget) handling price anchoring and geography restrictions.
-- **`evaluation/`**: Scripts to measure NDCG@K, AUC, and business metrics.
-
-## How to Run
-The entire application is orchestrated using Docker Compose. Before you run this, you can purge old containers using commands like `docker system prune -a --volumes` to free disk space if needed.
-
-1. **Start the Infrastructure**
-   This spins up NGINX, Redis, PostgreSQL, Mongo, and the custom Python & Go services.
-   ```bash
-   cd c:\Zomathon\Zomathon
-   docker-compose up -d --build
-   ```
-
-2. **Verify Containers are Running**
-   Ensure all services report as "Up".
-   ```bash
-   docker-compose ps
-   ```
-
-## How to Test
-
-### 1. Test the Gateway & Core Pipeline
-You can test the entire E2E cascade by sending a payload through the NGINX gateway. This payload represents a cart checkout attempt:
-
-**cURL Command:**
-```bash
-curl -X POST http://localhost:80/api/v1/recommend \
-     -H "Content-Type: application/json" \
-     -d '{
-           "user_id": "U0015",
-           "session_id": "S12345",
-           "cart_items": ["I0100", "I0250"],
-           "lat": 28.5,
-           "lon": 77.2
-         }'
+## 3.1 System Overview
+A 4-stage funnel to filter 10M items to Top 5 in < 200ms:
+```mermaid
+graph TD
+    A[10 Million Items] --> B[Stage 1: Retrieval <br> GraphSAGE + Siamese]
+    B -->|Top 200 Candidates| C[Stage 2: Sequence <br> BERT4Rec]
+    C -->|Contextualized Weights| D[Stage 3: Ranking <br> DLRM]
+    D -->|Top 50 w/ Prob Scores| E[Stage 4: Business Logic]
+    E --> F[Top 5 Recommendations]
 ```
 
-**Expected Return:**
-You should see a generated JSON response containing the fallback / recommended Top 5 items, the circuit breaker latency metric, and the GenAI meal completion explanation.
+## Directory Map
+- `gateway/`: Contains `nginx.conf` and the `html/` folder which holds `index.html`, `styles.css`, and `app.js`.
+- `python_ai_core/`: Contains `main.py` and `requirements.txt`. Reads CSVs directly from the root mounted volume (`/app/data`).
 
-### 2. Run the Evaluation Framework
-To run the automated AUC and business metrics evaluator:
+---
 
-```bash
-cd c:\Zomathon\Zomathon\evaluation
-pip install -r requirements.txt
-python evaluate.py
+## 🔥 How to Start and Test the Application
+
+### 1. Wipe Old Corrupted Volumes
+If you previously attempted to run the heavy multi-cluster setup, please prune Docker to remove dangling cache:
+```powershell
+docker system prune -a --volumes -f
+```
+
+### 2. Start the Lightweight Stack
+Build the lightweight NGINX and Python services natively. This will be an incredibly fast build.
+```powershell
+cd c:\Zomathon\Zomathon
+docker-compose up -d --build
+```
+
+### 3. Experience the Live Interface
+Wait 5 seconds for the Python backend to ingest the CSV files into memory. 
+Open your web browser and navigate to:
+**[http://localhost](http://localhost)**
+
+- **Select a User Profile** via the dropdown at the top to simulate different demographics.
+- **Add Items** from the "Popular Items" menu.
+- Open your **Cart Sidebar** on the right.
+- Watch as the **CSAO Rail** instantly and beautifully slides into view, presenting smart pairings based on heuristics that obey price limits (<= 40% Cart Value) and complementary food categories to finish the meal!
+
+### API Diagnostics (Optional)
+If you wish to test the backend API alone:
+```powershell
+curl -X POST http://localhost:80/api/v1/recommend `
+     -H "Content-Type: application/json" `
+     -d "{
+           \"user_id\": \"U0001\",
+           \"session_id\": \"S12345\",
+           \"cart_items\": [\"I0002\", \"I0023\"],
+           \"lat\": 28.5,
+           \"lon\": 77.2
+         }"
 ```

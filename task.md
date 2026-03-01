@@ -1,37 +1,25 @@
-# Project Titan: Cart Super Add-On (CSAO) Rail
+# ML Funnel & Frontend Enhancements
 
-## Planning & Architecture
-- [x] Read dataset schema (users, items, interactions, restaurants)
-- [x] Define precise directory tree structure
-- [x] Write directory structure to a file / chat
+## Database & Data Generation
+- [x] Rename items in `items.csv` to use realistic dish names (e.g., "Butter Chicken", "Masala Dosa").
 
-## Infrastructure Setup
-- [x] Generate updated docker-compose.yml (Lean Mode)
-  - NGINX gateway
-  - Single Redis instance
-  - Single PostgreSQL instance 
-  - Single MongoDB instance
-  - Python AI Core service (embedded FAISS)
-  - GoLang Re-Ranking service
-  - Evaluation batch service
+## Backend 4-Stage Funnel (Lightweight/Numpy/FAISS)
+- [x] Stage 1: Retrieval (GraphSAGE + Siamese). Implement FAISS (HNSW) indexing using item embeddings generated via Category/Rating similarities.
+- [x] Stage 2: Sequence (BERT4Rec). Implement a lightweight Attention layer (numpy) over the current `cart_items` to generate a contextual query vector predicting the next category.
+- [x] Stage 3: Ranking (DLRM). Implement User & Item embeddings (mocked) and compute interaction dot products, returning probabilities mapping to Focal Loss concepts.
+- [x] Stage 4: Business Logic. Keep current price anchoring (`min(50, Cart Value * 0.4)`) and meal time/packaging filters.
+- [x] New Endpoint: `/api/v1/reject`. Store rejected items per `user_id` in-memory. Ensure blocked items are omitted from future recommendations.
 
-## Gateway & Feature Store
-- [x] NGINX configuration (10ms budget)
-- [x] Feast Feature Store configuration (15ms budget)
-- [x] Feature Engineering logic (Time Cyclical, OpenWeather, Cart Composition)
-  
-## Python AI Core (Multi-Stage Cascade)
-- [x] Stage 1: FAISS embedded retrieval with GraphSAGE & Siamese Networks
-- [x] Stage 2: BERT4Rec Sequential Modeling (In-memory PyTorch)
-- [x] Stage 3: DLRM Ranking (In-memory PyTorch)
-- [x] Component 3 integration: YOLO v8, Swin Transformers, BERT embeddings, Llama 3 RAG
-- [x] Python Main FastAPI Service routing & logic
+## 1. Architecture & Infrastructure
+- [/] Bring back **Redis** in `docker-compose.yml`. Use `redis-py` in the Python backend to cache frequently accessed data (e.g., top-rated items, search results).
+- [/] Remove all time-of-day/clock logic from the backend recommendation pipeline and frontend.
 
-## Business Logic Re-Ranking (GoLang)
-- [x] GoLang microservice main logic (grpc server) (20ms budget)
-- [x] Price Anchoring & Geohash filters
-- [x] Proximity Logistics (Google Routes)
-- [x] Rejection Feedback using Redis Bloom Filter
+## Frontend Updates
+- [x] Display "Trending in Area (Sold in last 1 hour)" tag on top items.
+- [x] Add a visible "Reject" (X) button on Recommended Items in the CSAO rail.
+- [x] When "Reject" is clicked, remove the visual card instantly and send `/api/v1/reject` to the backend.
 
-## Evaluation Framework
-- [x] Evaluation scripts (AUC, NDCG@K, Precision@K, Recall@K)
+## Documentation
+- [x] Update `README.md` to reflect the 4-stage funnel (with textual flow chart).
+- [x] Update `implementation_plan.md` to map out these additions.
+- [x] Ensure all unused files are removed.

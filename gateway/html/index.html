@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomathon Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
+    <script src="app.js?v=4" defer></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- HEADER -->
+        <header class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-utensils"></i> Zomathon
+            </div>
+            <div class="nav-controls">
+                <div id="user-display" class="hidden">
+                    <span id="welcome-msg"></span>
+                    <button class="btn btn-outline" onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- VIEW 1: LOGIN -->
+        <main id="view-login" class="view-container active-view">
+            <div class="login-card">
+                <h2>Welcome to Zomathon</h2>
+                <p>Select your authentication type to proceed to the sandbox.</p>
+                <div class="login-actions">
+                    <button class="btn btn-primary" onclick="login('U0001', 'user')">
+                        <i class="fa-solid fa-user"></i> Login as Customer
+                    </button>
+                    <button class="btn btn-secondary" onclick="login('R001', 'restaurant')">
+                        <i class="fa-solid fa-store"></i> Login as Restaurant Owner
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- VIEW 2: USER HOMEPAGE -->
+        <main id="view-user-home" class="view-container hidden">
+            <!-- Search & Filters -->
+            <section class="discovery-header">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="global-search" placeholder="Search for dishes across all restaurants...">
+                </div>
+                <div class="filters">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="veg-toggle" onchange="performSearch()">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="filter-label">Veg Only</span>
+                    
+                    <select id="category-filter" onchange="performSearch()">
+                        <option value="All">All Categories</option>
+                        <option value="Main Course">Main Course</option>
+                        <option value="Starter">Starter</option>
+                        <option value="Bread">Bread</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Beverage">Beverage</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Dynamic Search Results -->
+            <section id="search-results-section" class="hidden">
+                <h3>Search Results</h3>
+                <div class="item-grid" id="search-grid"></div>
+            </section>
+
+            <!-- Restaurants List -->
+            <section id="restaurants-section">
+                <h3>Top Rated Restaurants Near You</h3>
+                <div class="rest-grid" id="restaurants-grid"></div>
+            </section>
+        </main>
+
+        <!-- VIEW 3: RESTAURANT MENU (CONSUMER) -->
+        <main id="view-restaurant-menu" class="view-container split-layout hidden">
+            <div class="menu-content">
+                <div class="menu-header">
+                    <button class="btn btn-outline btn-sm" onclick="showView('view-user-home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <h2 id="active-rest-name">Restaurant Name</h2>
+                    <div id="active-rest-rating" class="rating-badge"><i class="fa-solid fa-star"></i> 4.5</div>
+                </div>
+                <div class="item-grid" id="menu-grid"></div>
+            </div>
+            
+            <!-- Sticky Cart Sidebar -->
+            <aside class="cart-sidebar">
+                <h3>Your Cart</h3>
+                <div id="cart-items" class="cart-list"></div>
+                <div class="cart-total">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">₹0</span>
+                </div>
+                <button class="btn btn-primary w-100" style="margin-top: 1rem;">Proceed to Pay</button>
+                
+                <!-- CSAO Logic Rail (SCOPED TO RESTAURANT) -->
+                <div class="csao-rail hidden" id="csao-rail">
+                    <div class="csao-header">
+                        <h4>Super Add-Ons</h4>
+                        <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Suggested</span>
+                    </div>
+                    <div id="csao-items"></div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- VIEW 4: RESTAURANT OWNER DASHBOARD -->
+        <main id="view-owner-dashboard" class="view-container hidden">
+            <div class="dashboard-header">
+                <h2>Manage Your Menu</h2>
+                <button class="btn btn-primary" onclick="openCreateModal()"><i class="fa-solid fa-plus"></i> Add New Item</button>
+            </div>
+            <div class="table-container">
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="owner-menu-list">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="create-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Add Menu Item</h3>
+            <div class="form-group">
+                <label>Dish Name</label>
+                <input type="text" id="new-item-name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Price (₹)</label>
+                <input type="number" id="new-item-price" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="new-item-category" class="form-control">
+                    <option value="Main Course">Main Course</option>
+                    <option value="Starter">Starter</option>
+                    <option value="Bread">Bread</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Beverage">Beverage</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <select id="new-item-veg" class="form-control">
+                    <option value="true">Vegetarian</option>
+                    <option value="false">Non-Vegetarian</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitNewItem()">Create</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
