@@ -2,7 +2,7 @@
 
 Welcome to Zomathon's core engine! 🚀
 
-Zomathon is an ultra-fast, multi-tenant digital food delivery platform equipped with a powerful Cart Super Add-On (CSAO) Recommendation AI. We stripped away heavy machine learning frameworks like PyTorch and completely rebuilt the intelligence layer using lightning-fast mathematical representations powered by **FAISS** and **NumPy**. The result? Intelligent cross-selling pairings delivered under 200 milliseconds.
+Zomathon is an ultra-fast, multi-tenant digital food delivery platform equipped with a powerful Cart Super Add-On (CSAO) Recommendation AI. We have completely rebuilt the intelligence layer using lightning-fast mathematical representations powered by **FAISS** and **NumPy**. The result? Intelligent cross-selling pairings delivered under 200 milliseconds.
 
 ---
 
