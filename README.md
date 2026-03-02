@@ -2,103 +2,238 @@
 
 Welcome to Zomathon's core engine! 🚀
 
-Zomathon is an ultra-fast, multi-tenant digital food delivery platform equipped with a powerful Cart Super Add-On (CSAO) Recommendation AI. We have completely rebuilt the intelligence layer using lightning-fast mathematical representations powered by **FAISS** and **NumPy**. The result? Intelligent cross-selling pairings delivered under 200 milliseconds.
+Zomathon is an ultra-fast, multi-tenant digital food delivery platform equipped with a powerful Cart Super Add-On (CSAO) Recommendation AI. We have completely rebuilt the intelligence layer using lightning-fast mathematical representations powered by **FAISS** and **NumPy**. The result? Intelligent cross-selling pairings delivered under 200 milliseconds without requiring heavy GPUs or PyTorch.
 
 ---
 
 ## 🏗️ 1. Architecture Overview
 
-### Single-Command Deployment
-The application is governed entirely by `docker-compose.yml`, which orchestrates a pristine 3-tier architecture connected securely via a custom bridge network (`titan-net`):
+The system runs entirely via Docker Compose in a robust, multi-container architecture. Below is a macro-level diagram of the overarching architecture and its communication flow:
 
-1. **Frontend Gateway (`nginx:alpine`)**: Runs on port `80`. Serves lightweight frontend HTML, CSS, and JS files natively and acts as a reverse proxy, instantly routing `/api/v1/*` requests back to the AI Core.
+```mermaid
+graph TD
+    User([Customer / Restaurant Owner]) <-->|HTTP Port 80| Gateway[NGINX Gateway]
+    Gateway <-->|Reverse Proxy API| PythonCore[Python AI Core - FastAPI]
+    
+    subgraph Data & Memory
+        PythonCore <-->|Cache Hot Data| Redis[(Redis Cache)]
+        PythonCore <-->|In-Memory Analytics| Pandas[Pandas DataFrames]
+        PythonCore <-->|Fast Nearest Neighbor| FAISS[FAISS CPU Index]
+    end
+    
+    subgraph Persistent Storage
+         Pandas <-->|Async CSV Writes| CSV[Local CSV Files]
+    end
+```
+
+The application is orchestrated via a pristine 3-tier architecture connected securely via a custom bridge network (`titan-net`):
+
+1. **Frontend Gateway (`nginx:alpine`)**: Runs on port `80`. Serves lightweight frontend HTML, CSS, and JS files natively and acts as a reverse proxy, instantly routing `/api/v1/*` REST requests back to the AI Core.
 2. **AI & Logic Core (`python:3.11-slim`)**: Runs on port `8080`. The beating heart of the platform. Built using **FastAPI** and **Uvicorn**, it loads the entire restaurant catalog into **Pandas Dataframes** in RAM for instantaneous CRUD operations, eliminating database latency.
 3. **High-Speed Cache (`redis:alpine`)**: Runs natively inside the cluster. Used to instantly return cached Restaurant lists and Search Results to the UI.
 
 ---
 
-## 💻 2. Tech Stack & Dependencies
+## 🗂️ 2. File & Folder Structure
 
-We rely on a hyper-efficient, stripped-down set of tools:
+The application is separated cleanly by concerns, making the repository easy to grok and deploy.
 
-### Frontend
-*   **Vanilla HTML5 & CSS3**: Pure, frameworkless UI guaranteeing zero bundle bloat and sub-second First Contentful Paint.
-*   **Vanilla JavaScript (ES6+)**: Stateful logic (`app.js`) handling view routing, local storage sessions, modal toggling, Cart management, and debounced API calls for searches.
-*   **FontAwesome**: Integrated via CDN for rich iconography.
-
-### Backend Routing & Caching
-*   **NGINX**: Used as an edge web server inside the `./gateway` container. We mapped `nginx.conf` to statically serve the UI and transparently `proxy_pass` to the backend.
-*   **Redis**: Integrated into the Docker cluster. The Python backend connects to it utilizing the `redis` python package. We cache heavy search queries (`/search?q=x`) and global home requests for up to 5 minutes to reduce Panda computations.
-
-### AI Core & Data Manipulation (Python)
-*   **FastAPI & Uvicorn**: Chosen for extreme ASGI speed and native asynchronous handling of overlapping user connections.
-*   **Pydantic**: Provides stringent type-checking for incoming REST payload models (e.g., `OrderRequest`, `ItemCreate`, `InferenceRequest`).
-*   **Pandas (Data Layer)**: The entire database acts in memory via Dataframes. CRUD requests physically modify the Dataframes and instantly write via `.to_csv()` to disk asynchronously for persistence.
-*   **NumPy**: Executes the matrix permutations, sequence averaging, dot-product calculations, and randomization vectors for our simulated Deep Learning mechanisms.
-*   **FAISS-CPU (Facebook AI Similarity Search)**: Subsets the millions of mock vector permutations instantly. We build an `IndexHNSWFlat` index, which scales to millions of item embeddings natively in memory without requiring a GPU.
+```text
+/Zomathon
+│
+├── docker-compose.yml       # Orchestrates gateway, redis, and python backend networking and volumes.
+├── README.md                # Comprehensive system documentation (You are here).
+├── generate_items.py        # Scalable automated script designed to generate realistic item catalogs.
+│
+├── users.csv                # Persistent Data: Mock Customer base holding user context & spice tolerances.
+├── items.csv                # Persistent Data: Active Global Item Catalog (~2000 real-world dishes). Written back during CRUD.
+├── restaurants.csv          # Persistent Data: Partner Restaurants with Lat/Lon, Ratings, and Cuisines.
+├── interactions.csv         # Persistent Data: Active Order History Tracker. Written back during Checkout.
+│
+├── gateway/                 # NGINX Frontend Service Directory
+│   ├── Dockerfile           # Minimal configuration to host the HTML files on an Nginx alpine image.
+│   ├── nginx.conf           # Reverse proxy rules routing `/api/v1/` traffic accurately to `python-ai-core:8080`.
+│   └── html/                # Statically served multi-tenant web application.
+│       ├── index.html       # Clean HTML Shell handling views for Home, Search, Restaurant Menu, and Owner Dashboard.
+│       ├── styles.css       # Custom variables, animations, grid systems, and layouts. No heavy frameworks.
+│       └── app.js           # Lightweight Stateful Vanilla JS (ES6) controlling routing, APIs, DOM renders, and local storage.
+│
+└── python_ai_core/          # Pure Python & AI Service Directory
+    ├── Dockerfile           # Container instructions specifically targeting Python 3.11 Slim to run the backend loop.
+    ├── requirements.txt     # Python dependencies mapping exactly to what the application needs.
+    └── main.py              # The unified script hosting all FastAPI REST Endpoints, Redis Connections, and the 4-Stage CSAO ML Pipeline.
+```
 
 ---
 
-## 🧠 3. End-to-End ML Recommendation Flow (CSAO Rail)
+## 💻 3. Technologies Used
 
-The "Cart Super Add-On" (CSAO) logic lives inside `main.py` -> `/api/v1/recommend`. It is designed to act identical to a massive industrial recommendation track, simplified into 4 blistering-fast mathematical stages natively written in Python:
+We rely on a hyper-efficient, stripped-down ecosystem mapping strictly to required functional domains.
+
+| Technology | Domain | Description & Use-Case in Zomathon |
+| :--- | :--- | :--- |
+| **Docker** | DevOps | The primary virtualization technology used to encapsulate the services into isolated, identical, fast-booting containers. Ensures "works on my machine" runs flawlessly anywhere. |
+| **Docker Compose** | DevOps | The orchestration mechanism configuring networks, volumes, environment variables, and coordinating the startup sequence between NGINX, Python, and Redis simultaneously. |
+| **Vanilla HTML5 & CSS3** | Frontend | Pure, frameworkless UI markup layout guaranteeing zero bundle bloat and sub-second First Contentful Paint. |
+| **Vanilla JS (ES6+)** | Frontend | Stateful logic (`app.js`) handling view routing, local storage sessions, modal toggling, Cart management, and debounced API calls for searches. |
+| **FontAwesome** | Frontend | Inserted via CDN for lightweight but diverse iconography natively injected across the site's layout. |
+| **NGINX** | Network / Proxy | Used as an edge web server inside the `gateway` container. We map `nginx.conf` to statically serve the UI and securely `proxy_pass` to backend Python APIs. |
+| **Redis** | In-Memory Cache | Fast caching layer for global home requests and debounced heavy searches (`/search?q=x`). Reduces heavy load on the Pandas runtime via 5-minute cache TTL limits. |
+| **FastAPI** | Backend Framework | Chosen for extreme ASGI speed and asynchronous handling of overlapping user API connections. Provides simple REST endpoint configurations. |
+| **Uvicorn** | Application Server | The robust ASGI web server implementation driving FastAPI. Boots the application natively at `0.0.0.0:8080` internally. |
+| **Pydantic** | Schema Validation | Provides stringent type-checking for incoming REST payload models (e.g., `OrderRequest`, `ItemCreate`, `InferenceRequest`). If users submit bad data, Pydantic throws an immediate 422 Unprocessable Entity error. |
+| **Pandas** | DB / Data Layer | The heavy core lifting mechanism! The entire database acts in memory via extremely fast C-implemented DataFrame objects. Performs the heavy filtering operations during ranking and natively pushes data back to the CSV volumes for persistence. |
+| **NumPy** | Mathematics | Executes the matrix permutations, sequence averaging (Context Vectors), dot-product calculations (Scores), and randomization heuristics natively acting as our model's tensor engine without PyTorch bloat. |
+| **FAISS CPU** | Vector Search | (Facebook AI Similarity Search). Operates our initial Stage 1 Retrieval index by organizing 64-dimensional float arrays of items and generating blistering fast Approximate Nearest Neighbor boundaries. |
+
+---
+
+## 🧠 4. End-to-End ML Recommendation Flow (CSAO Rail)
+
+The "Cart Super Add-On" (CSAO) logic lives inside `main.py` under the `POST /api/v1/recommend` endpoint. It is an industrial recommendation track simplified into 4 blistering-fast native functional stages.
+
+```mermaid
+journey
+    title The Data Flow through the CSAO Machine Learning Rail
+    section Stage 1: Fast Retrieval
+      Generate Cart Context via Sequence Attention Mean: 5: Processing
+      Execute FAISS Neighbor Search: 5: Processing
+      Cross-Reference & Filter Scope to Restaurant Only: 5: Logic
+    section Stage 2: Contextualization
+      Filter out already Purchased/Cart Items: 5: Logic
+    section Stage 3: Deep Ranking
+      Apply DLRM Dot-Product with User Embedding Matrix: 5: AI Scoring
+      Parse Name String for NLP Spice Tokens: 5: AI Scoring
+    section Stage 4: Business Engine
+      Validate Cart Budget Cap Restrictions: 5: Finance
+      Bump Portions & Detect Hero Rating Multipliers: 5: Strategy
+      Return Top 5 Scored Pairs as JSON with Sentiments: 5: Output
+```
 
 ### **Stage 1: Scaled Retrieval (FAISS HNSW + Simulated GraphSAGE)**
-When a user adds an item to their cart, we immediately convert their *active cart item identifiers* into an average Context Vector using Sequence Attention logic.
+When a user adds an item to their cart, we immediately convert their *active cart item identifiers* into an average Context Vector.
 1. We query the `faiss.IndexHNSWFlat` using this vector.
-2. FAISS performs an Approximate Nearest Neighbor algorithm, returning up to 1000 mathematically similar candidates based on 64-dimensional embeddings (simulating GraphSAGE edge proximities).
-3. **Hard Bounds Scope Filtering**: The AI immediately strips away any item that is *already inside the user's cart* or *belongs to a different Restaurant* than the one they are currently viewing.
+2. FAISS performs an Approximate Nearest Neighbor algorithm, returning mathematically similar candidates based on 64-dimensional embeddings (simulating GraphSAGE edge proximities).
+3. **Hard Bounds Scope Filtering**: The logic strips away any item that is *already inside the user's cart* or *belongs to a different Restaurant*.
 
 ### **Stage 2: Sequence Inference (BERT4Rec Simulation)**
-The mathematical context bridge! We simulate Transformer logic by dynamically taking the NumPy representations of everything inside the user's cart, and computing a scaled mean `context_vector`. This forces the FAISS search space toward items that *bridge the gap* (i.e. if the user adds a dry bread and a dry starter, the attention vector will organically drift toward a gravy Main Course or a Beverage to average out the meal).
+The mathematical context bridge! We simulate Transformer logic dynamically taking the NumPy representations of everything inside the user's cart, and computing a scaled mean `context_vector`. This forces the FAISS search space toward items that *bridge the gap* organically.
 
 ### **Stage 3: Fine Ranking (Simulated DLRM + NLP Embeddings)**
-The remaining 1000 items are run through a mathematically simulated Deep Learning Recommendation Model (DLRM).
-1. We compute a focal dot product between a randomized `user_emb` (User Embedding based off their User ID trait seed) and the candidate embeddings.
-2. **NLP Text Parsing**: The backend natively maps words inside the item's `Name` (such as "Spicy", "Chilly", "Masala") against the `user_spice_tolerance` factor.
-3. If the user profile mathematically favors heat, and the NLP detects "Spicy", the item receives a massive linear weight boost!
+The remaining items run through a mathematically simulated Deep Learning Recommendation Model (DLRM).
+1. We compute a focal dot product between a randomized `user_emb` (User Embedding based on ID trait seed) and candidate embeddings.
+2. **NLP Text Parsing**: The backend natively maps words inside the item's `Name` (e.g., "Spicy", "Chilly", "Masala") against the `user_spice_tolerance` factor.
+3. If the user profile favors heat and NLP detects "Spicy", the item receives a linear weight boost along with an injection of a custom sentiment string indicating the reason.
 
 ### **Stage 4: Core Business Heuristics & Filters**
-Finally, the Top 50 items are slammed against hardcoded business rules written purely in Pandas:
-1. **Budget Restriction**: Recommends are capped to **40% of the active Cart's Total Value**. (We never want to suggest a ₹500 dish to someone checking out a ₹200 cart).
-2. **Package Rule**: If the cart is enormous (> ₹600), the system actively boosts items marked `Size: Low` to balance the meal portions.
-3. **Rating Multiplier**: The item's parent restaurant rating is referenced. If `RestRating >= 4.8`, the item is flagged as a "Hero" and its rank surges upwards.
-
-The final **Top 5 Items** are converted to JSON with generated human-readable natural language explanations ("Perfect pairing!", "NLP Match: Maps to your High Spice User Embedding") and relayed back to the NGINX UI.
+Finally, Top items are slammed against hardcoded business rules generated purely inside Pandas DataFrames:
+1. **Budget Restriction**: Recommends are capped to **40% of the active Cart's Total Value**.
+2. **Package Rule**: If the cart is huge (> ₹600), the system actively boosts items marked `Size: Low` to balance meal portions.
+3. **Rating Multiplier**: Items with `RestRating >= 4.8` are flagged as a "Hero" item, and their rank score surges.
 
 ---
 
-## 🏃 4. Software Engineering (SDE) Flow & User Journey
+## 🏃 5. Software Engineering (SDE) Flow & User Journey
 
-### A. The Customer Journey
-*   **Authentication**: The Customer clicks "Login as Customer" (UI triggers `/login/user` mapping to `U0001`).
-*   **Global Discovery**: The homepage sends a `GET /restaurants`, instantly parsed via the Redis cache. The user sees a pristine grid of multi-cuisine restaurants.
-*   **Search Matrix**: The user types "Tikka" in the global search. A debounced Javascript hook sends `GET /search?q=Tikka`, iterating down the Pandas dataframe across the entire ecosystem.
-*   **Local Restaurant Menu**: The user clicks a restaurant. The UI hides the home page layout. `GET /restaurants/{rest_id}/items` fires, pulling back exclusively that specific menu.
-*   **The CSAO Injection**: The user clicks `Add` on a main course. The Local JS state (`app.js`) triggers `POST /recommend`. The 4-Stage AI pipeline executes locally in `<200ms`, feeding back the top 5 intelligent pairings that dynamically pop up on the sidebar visually!
-*   **The Order Check**: The user clicks `Proceed to Pay`. `POST /order` fires, wiping the UI cart, saving the purchase array into `interactions.csv`, keeping a mathematical log of user behavior.
+Here is the map detailing how the data navigates the platform depending on which user archetype is actively clicking natively in the Single Page Application UI.
 
-### B. The Restaurant Owner Journey
-*   **Authentication**: The Owner clicks "Login as Restaurant Owner" (`/login/restaurant`).
-*   **CRUD Dashboard**: The UI loads the Owner Dashboard. 
-*   **Updating**: The Owner sees a typo in their item, clicks "Edit", changes the price, and hits Save. The frontend triggers `PUT /api/v1/items/{item_id}`.
-*   **The Reaction**: Pandas physically mutates the `items.csv` file, updates RAM, recalculates completely new 64-dimensional embeddings for the catalog, refreshes FAISS, and intelligently drops all cached search queries from Redis instantaneously!
+```mermaid
+sequenceDiagram
+    participant User
+    participant NGINX (Frontend)
+    participant Python (FastAPI/AI)
+    participant Redis (Cache)
+    participant Pandas (Memory/CSV)
+
+    note over User,Pandas: Scenario: A Customer places an order.
+    User->>NGINX: Clicks "Login as Customer"
+    NGINX->>Python: POST /login/user (Payload: ID)
+    Python-->>NGINX: Success: Session JWT returned
+    User->>NGINX: Views Global Homepage
+    NGINX->>Redis: Request Restaurant Array
+    Redis-->>NGINX: Cached JSON Displayed Instantly
+    User->>NGINX: Clicks on "Restaurant A"
+    NGINX->>Python: GET /restaurants/{rest_id}/items
+    Python->>Pandas: df.loc[RestID == A]
+    Pandas-->>Python: Dictionaries Extracted
+    Python-->>NGINX: Local Menu Rendered
+    User->>NGINX: Add "Paneer Tikka" to Cart!
+    NGINX->>Python: POST /recommend (Cart Payload)
+    Python->>Python: Execute 4-Stage FAISS ML Rail
+    Python-->>NGINX: Returns Top 5 Pairings (e.g. Masala Chai)
+    User->>NGINX: Clicks 'Add' on the Recommended Chai!
+    User->>NGINX: Clicks "Proceed to Pay"
+    NGINX->>Python: POST /order (Payload: Cart IDs)
+    Python->>Pandas: Log interactions to interactions.csv
+    Python-->>NGINX: Purchase Successful! Cart Emptied.
+```
+
+The system beautifully supports CRUD Operations for **Restaurant Owners**:
+1. An Owner authenticates via `/login/restaurant` natively through the UI.
+2. The UI detects an Owner payload and loads the **Owner Dashboard** view dynamically, revealing a table of their active dish matrix via Pandas extraction.
+3. If they hit the "Edit" modal and tweak a price, the system sends an asynchronous `PUT /api/v1/items/{item_id}` payload.
+4. The Pandas DataFrame alters memory on the spot, saves asynchronously to the `items.csv`, recalculates completely new mathematical 64-dimensional bounds for the vector catalog, updates the active FAISS engine, and dumps the Redis cache to reflect real-time accuracy.
 
 ---
 
-## 💾 5. Data Dictionaries (CSVs)
+## 💾 6. Data Dictionaries (CSVs)
 
-Since heavy databases were entirely ousted, CSVs act as physical persistence for the application when the container goes offline.
+Since heavy databases were ousted for execution speeds, flat CSV architecture ensures physical persistence upon container reboots.
 
-1.  **`items.csv`**: Over 2000 dynamically populated permutations of dishes spanning Main Courses, Starters, Breads, Beverages, Desserts, and Sides linked across 50 simulated Restaurants.
-    *   *Columns: ItemID, RestID, Name, Price_INR, Is_Veg, Category, Image_URL, Meal_Time, Size*
-2.  **`restaurants.csv`**: Contains mock logic for 50 distinct real-world locations, storing mock GPS lat/lon data, real categorical cuisines (Chinese, South Indian, Italian), and organic 1.0 - 5.0 ratings.
-    *   *Columns: RestID, Cuisine, GPS_Lat, GPS_Long, Rating, Avg_Prep_Time_mins*
-3.  **`users.csv`**: Simple mock matrix of standard users natively available for login testing.
-    *   *Columns: UserID, Name, Tier, Registration_Date, Spice_Tolerance_Base*
-4.  **`interactions.csv`**: Automatically generated and appended to whenever a user completes an overarching `Checkout` flow via the UI.
-    *   *Columns: UserID, ItemID, InteractionType, Timestamp*
+### `items.csv`
+Over 2000 dynamically populated permutations of dishes spanning multiple categories globally linked to mock locations.
+| Column | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| `ItemID` | STR | `I0201` | Unique string identifying the product. |
+| `RestID` | STR | `R015` | The Foreign Key matching the restaurant it belongs to. |
+| `Name` | STR | `Spicy Classic Kadai Paneer` | Highly dense string utilized for rendering and NLP token cross-referencing. |
+| `Price_INR` | INT | `350` | The integer value used maliciously during Stage 4 Business Math bounding logic. |
+| `Is_Veg` | BOOL | `1` / `0` | Hard metric mapped for Global Tag switches in Search algorithms. |
+| `Category` | STR | `Main Course` | Dictates proximity logic during context averaging embeddings. |
+| `Image_URL` | STR | `/img/item.jpg` | Native static image locations. |
+| `Meal_Time` | STR | `Lunch` | Optional heuristical boundary metric. |
+| `Size` | STR | `High` | Size token utilized inside Stage 4 Balancing Logics. |
+
+### `restaurants.csv`
+| Column | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| `RestID` | STR | `R045` | Unique restaurant identifier binding the system. |
+| `Cuisine` | STR | `Italian` | The parent category for UI labeling. |
+| `GPS_Lat` | FLOAT | `28.6194` | Base logic coordinates mappings. |
+| `GPS_Long` | FLOAT | `77.2681` | Base logic coordinates mappings. |
+| `Rating` | FLOAT | `4.8` | The critical boundary utilized via multipliers during Stage 4 Hero Logic. |
+
+### `users.csv`
+| Column | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| `UserID` | STR | `U0001` | Core authentication token utilized across the UI payload tracking events. |
+| `Name` | STR | `Jahnvi` | Used strictly for cosmetic UI displays inside the NGINX state variables. |
+| `Tier` | STR | `Premium` | Flag indicating heuristic modifications on boundary constraints in ML pipelines. |
+| `Spice_Tolerance`| FLOAT | `0.9` | Random matrix used to determine boolean shifts in NLP keyword hits (e.g., Spicy food alignment). |
+
+### `interactions.csv`
+*(Automatically generated tracking log upon User Purchases via POST /order)*
+| Column | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| `UserID` | STR | `U0023` | The customer generating the event matrix mathematically. |
+| `ItemID` | STR | `I0055` | The target item they checked out. |
+| `InteractionType` | STR | `order` | Classification string mapping to backend logic sequences. |
+| `Timestamp` | INT | `1703010323` | Unix epoch logging transaction time. |
 
 ---
 
-> Built rigorously for minimal spin-up time and maximized logical throughput. Designed via Project Titan.
+## 🔥 7. How to Deploy Locally
+
+### Stand Up the Application 
+1. Prune dangling resources from cache (optional but recommended):
+```bash
+docker system prune -f 
+docker volume prune -f
+```
+2. In the `C:\Zomathon\Zomathon` directory, forcefully spawn the composition via detached background compilation:
+```bash
+docker-compose up -d --build
+```
+
+### Accessing the Interface
+Wait ~5 seconds for the FAISS logic container to fully boot Pandas into memory and then open your browser at **[http://localhost](http://localhost)** to engage with the completed intelligence layer!
