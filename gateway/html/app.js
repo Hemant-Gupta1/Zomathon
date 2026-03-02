@@ -353,6 +353,7 @@ function renderRecommendations(recs, explanations, trendings) {
     }
 
     recs.forEach((rec, idx) => {
+        currentMenuReference[rec.ItemID] = rec;
         const reason = explanations[idx] || "Perfect pairing!";
         const isTrending = trendings[idx] ? '<span class="tag trending-tag"><i class="fa-solid fa-fire"></i> Trending</span>' : '';
         
@@ -367,7 +368,7 @@ function renderRecommendations(recs, explanations, trendings) {
                 <span class="csao-price">₹${rec.Price_INR}</span>
                 <div class="csao-ai-reason"><i class="fa-solid fa-sparkles"></i> ${reason}</div>
             </div>
-            <button class="csao-add" onclick="currentMenuReference['${rec.ItemID}'] = rec; addToCart('${rec.ItemID}')">
+            <button class="csao-add" onclick="addToCart('${rec.ItemID}')">
                 <i class="fa-solid fa-plus"></i>
             </button>
         `;
