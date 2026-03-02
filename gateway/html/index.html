@@ -99,7 +99,7 @@
                     <span>Subtotal</span>
                     <span id="cart-subtotal">₹0</span>
                 </div>
-                <button class="btn btn-primary w-100" style="margin-top: 1rem;">Proceed to Pay</button>
+                <button class="btn btn-primary w-100" id="checkout-btn" style="margin-top: 1rem;" onclick="placeOrder()">Proceed to Pay</button>
                 
                 <!-- CSAO Logic Rail (SCOPED TO RESTAURANT) -->
                 <div class="csao-rail hidden" id="csao-rail">
@@ -169,6 +169,40 @@
             <div class="modal-actions">
                 <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
                 <button class="btn btn-primary" onclick="submitNewItem()">Create</button>
+            </div>
+        </div>
+    </div>
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Edit Menu Item</h3>
+            <div class="form-group">
+                <label>Dish Name</label>
+                <input type="text" id="edit-item-name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Price (₹)</label>
+                <input type="number" id="edit-item-price" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="edit-item-category" class="form-control">
+                    <option value="Main Course">Main Course</option>
+                    <option value="Starter">Starter</option>
+                    <option value="Bread">Bread</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Beverage">Beverage</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <select id="edit-item-veg" class="form-control">
+                    <option value="true">Vegetarian</option>
+                    <option value="false">Non-Vegetarian</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeEditModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitEditItem()">Save Changes</button>
             </div>
         </div>
     </div>

@@ -275,6 +275,36 @@ function updateCartDisplay() {
     document.getElementById('cart-subtotal').textContent = `₹${state.cartTotal}`;
 }
 
+async function placeOrder() {
+    if(state.cart.length === 0) return;
+    
+    const cartIds = state.cart.map(i => i.ItemID);
+    try {
+        const res = await fetch(`${API_BASE}/order`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: state.userId,
+                cart_items: cartIds
+            })
+        });
+        
+        if (res.ok) {
+            alert("Order placed successfully!");
+            state.cart = [];
+            updateCartDisplay();
+            document.getElementById('csao-rail').classList.add('hidden');
+            showView('view-user-home'); // return to home
+        } else {
+            alert("Failed to place order.");
+        }
+    } catch(e) {
+        console.error("Order failed", e);
+        alert("Failed to place order.");
+    }
+}
+
+
 let recTimeout;
 function fetchRecommendations() {
     clearTimeout(recTimeout);
@@ -383,6 +413,9 @@ function renderOwnerMenuTable(items) {
             <td>${item.Is_Veg ? '🟩 Veg' : '🟥 Non-Veg'}</td>
             <td>₹${item.Price_INR}</td>
             <td>
+                <button class="btn btn-outline btn-sm text-primary" onclick="openEditModal('${item.ItemID}')">
+                    <i class="fa-solid fa-pen"></i> Edit
+                </button>
                 <button class="btn btn-outline btn-sm text-danger" onclick="deleteItem('${item.ItemID}')">
                     <i class="fa-solid fa-trash"></i> Delete
                 </button>
@@ -422,6 +455,52 @@ async function submitNewItem() {
         closeModal();
         loadOwnerDashboard();
     } catch(e) { alert("Failed to create"); }
+}
+
+let editingItemId = null;
+
+async function openEditModal(itemId) {
+    editingItemId = itemId;
+    // Find item data
+    try {
+        const res = await fetch(`${API_BASE}/restaurants/${state.userId}/items`);
+        const data = await res.json();
+        const item = data.find(i => i.ItemID === itemId);
+        if (item) {
+            document.getElementById('edit-item-name').value = item.Name;
+            document.getElementById('edit-item-price').value = item.Price_INR;
+            document.getElementById('edit-item-category').value = item.Category;
+            document.getElementById('edit-item-veg').value = item.Is_Veg.toString();
+            document.getElementById('edit-modal').classList.remove('hidden');
+        }
+    } catch(e) { console.error("Could not fetch item to edit"); }
+}
+
+function closeEditModal() { 
+    document.getElementById('edit-modal').classList.add('hidden'); 
+    editingItemId = null;
+}
+
+async function submitEditItem() {
+    if (!editingItemId) return;
+
+    const payload = {
+        Name: document.getElementById('edit-item-name').value,
+        Price_INR: parseInt(document.getElementById('edit-item-price').value),
+        Category: document.getElementById('edit-item-category').value,
+        Is_Veg: document.getElementById('edit-item-veg').value === "true",
+        Size: "Medium"
+    };
+    
+    try {
+        await fetch(`${API_BASE}/items/${editingItemId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        closeEditModal();
+        loadOwnerDashboard();
+    } catch(e) { alert("Failed to update"); }
 }
 
 // Initialize on load

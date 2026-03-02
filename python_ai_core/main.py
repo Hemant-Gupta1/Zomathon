@@ -107,6 +107,11 @@ class ItemCreate(BaseModel):
     Is_Veg: bool
     Size: str = "Medium"
 
+class OrderRequest(BaseModel):
+    user_id: str
+    cart_items: List[str]
+
+
 # ---------------------------------------------------------
 # Authentication Endpoints
 # ---------------------------------------------------------
@@ -208,6 +213,35 @@ def delete_item(item_id: str):
     if cache: cache.flushdb()
     return {"status": "success"}
 
+@app.put("/api/v1/items/{item_id}")
+def update_item(item_id: str, item: ItemCreate):
+    global items_df
+    if item_id in items_df['ItemID'].values:
+        idx = items_df.index[items_df['ItemID'] == item_id].tolist()[0]
+        items_df.at[idx, 'Name'] = item.Name
+        items_df.at[idx, 'Price_INR'] = item.Price_INR
+        items_df.at[idx, 'Category'] = item.Category
+        items_df.at[idx, 'Is_Veg'] = item.Is_Veg
+        items_df.at[idx, 'Size'] = item.Size
+        items_df.to_csv(f"{DATA_DIR}/items.csv", index=False)
+        build_faiss_index()
+        if cache: cache.flushdb()
+        return {"status": "success", "item": items_df.loc[idx].to_dict()}
+    return {"status": "error", "message": "Item not found"}
+
+@app.post("/api/v1/order")
+def place_order(req: OrderRequest):
+    interactions_path = f"{DATA_DIR}/interactions.csv"
+    try:
+        interactions_df = pd.read_csv(interactions_path) if os.path.exists(interactions_path) else pd.DataFrame(columns=['UserID', 'ItemID', 'InteractionType', 'Timestamp'])
+        new_interactions = [{'UserID': req.user_id, 'ItemID': i, 'InteractionType': 'order', 'Timestamp': int(time.time())} for i in req.cart_items]
+        if new_interactions:
+            interactions_df = pd.concat([interactions_df, pd.DataFrame(new_interactions)], ignore_index=True)
+            interactions_df.to_csv(interactions_path, index=False)
+        return {"status": "success"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 # ---------------------------------------------------------
 # 4-Stage CSAO Pipeline (Refactored)
 # ---------------------------------------------------------
@@ -308,10 +342,11 @@ async def recommend(req: InferenceRequest):
 
     if candidates.empty:
         # Fallback if scope pruning was too aggressive
+        filtered_items = items_df[~items_df['ItemID'].isin(req.cart_items)]
         if req.restaurant_id:
-            candidates = items_df[items_df['RestID'] == req.restaurant_id].head(10).copy()
+            candidates = filtered_items[filtered_items['RestID'] == req.restaurant_id].head(10).copy()
         else:
-            candidates = items_df.head(10).copy()
+            candidates = filtered_items.head(10).copy()
         candidates['score'] = 1.0
     else:
         candidates['score'] = candidates['ItemID'].map(dlrm_scores)
@@ -326,8 +361,9 @@ async def recommend(req: InferenceRequest):
     
     candidates = candidates[candidates['Price_INR'] <= threshold].copy()
     if candidates.empty:
-        if req.restaurant_id: candidates = items_df[items_df['RestID'] == req.restaurant_id].head(10).copy()
-        else: candidates = items_df.head(10).copy()
+        filtered_items = items_df[~items_df['ItemID'].isin(req.cart_items)]
+        if req.restaurant_id: candidates = filtered_items[filtered_items['RestID'] == req.restaurant_id].head(10).copy()
+        else: candidates = filtered_items.head(10).copy()
         candidates['score'] = 1.0
 
     if 'Size' not in candidates.columns: candidates['Size'] = 'Medium'
