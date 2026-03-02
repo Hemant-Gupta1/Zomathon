@@ -204,23 +204,28 @@ Over 2000 dynamically populated permutations of dishes spanning multiple categor
 | `GPS_Lat` | FLOAT | `28.6194` | Base logic coordinates mappings. |
 | `GPS_Long` | FLOAT | `77.2681` | Base logic coordinates mappings. |
 | `Rating` | FLOAT | `4.8` | The critical boundary utilized via multipliers during Stage 4 Hero Logic. |
+| `Avg_Prep_Time_mins` | INT | `35` | Used optionally for delivery distance & time ranking heuristics. |
 
 ### `users.csv`
 | Column | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | `UserID` | STR | `U0001` | Core authentication token utilized across the UI payload tracking events. |
-| `Name` | STR | `Jahnvi` | Used strictly for cosmetic UI displays inside the NGINX state variables. |
-| `Tier` | STR | `Premium` | Flag indicating heuristic modifications on boundary constraints in ML pipelines. |
-| `Spice_Tolerance`| FLOAT | `0.9` | Random matrix used to determine boolean shifts in NLP keyword hits (e.g., Spicy food alignment). |
+| `Age` | INT | `26` | Deep learning profile feature mapped to generic age demographics. |
+| `Gender` | STR | `M` | Demographic tag used strictly for macro-averaging logic permutations. |
+| `Veg_Score` | FLOAT | `0.9` | Ratio scale indicating strictly Veg vs Non-Veg behavioral habits. |
+| `City_Tier` | INT | `1` | Heuristic marker utilized for baseline geo-distance threshold gating. |
+| `Price_Sensitivity` | FLOAT | `0.4` | Determines how tightly the Recommendation Engine clamps Top-Price suggestions. |
 
 ### `interactions.csv`
-*(Automatically generated tracking log upon User Purchases via POST /order)*
+*(Automatically generated tracking log mapping user clickstream sequences)*
 | Column | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
+| `SessionID` | STR | `S001` | The clustered parent session identifier binding multiple cart clicks. |
 | `UserID` | STR | `U0023` | The customer generating the event matrix mathematically. |
-| `ItemID` | STR | `I0055` | The target item they checked out. |
-| `InteractionType` | STR | `order` | Classification string mapping to backend logic sequences. |
 | `Timestamp` | INT | `1703010323` | Unix epoch logging transaction time. |
+| `Event` | STR | `click` | The specific engagement action occurring in the funnel. |
+| `ItemID` | STR | `I0055` | The target item they checked out or reviewed. |
+| `Cart_State` | STR | `['I0001']` | The stringified array snapshot of the user's cart exactly at the moment of interaction. |
 
 ---
 
