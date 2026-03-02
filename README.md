@@ -93,21 +93,23 @@ We rely on a hyper-efficient, stripped-down ecosystem mapping strictly to requir
 The "Cart Super Add-On" (CSAO) logic lives inside `main.py` under the `POST /api/v1/recommend` endpoint. It is an industrial recommendation track simplified into 4 blistering-fast native functional stages.
 
 ```mermaid
-journey
-    title The Data Flow through the CSAO Machine Learning Rail
-    section Stage 1: Fast Retrieval
-      Generate Cart Context via Sequence Attention Mean: 5: Processing
-      Execute FAISS Neighbor Search: 5: Processing
-      Cross-Reference & Filter Scope to Restaurant Only: 5: Logic
-    section Stage 2: Contextualization
-      Filter out already Purchased/Cart Items: 5: Logic
-    section Stage 3: Deep Ranking
-      Apply DLRM Dot-Product with User Embedding Matrix: 5: AI Scoring
-      Parse Name String for NLP Spice Tokens: 5: AI Scoring
-    section Stage 4: Business Engine
-      Validate Cart Budget Cap Restrictions: 5: Finance
-      Bump Portions & Detect Hero Rating Multipliers: 5: Strategy
-      Return Top 5 Scored Pairs as JSON with Sentiments: 5: Output
+graph TD
+    %% Stage 1
+    A[Cart Added] --> B(Generate Cart Context Mean)
+    B --> C(Execute FAISS Similarity Search)
+    C --> D{Filter: Same Restaurant?}
+    
+    %% Stage 2
+    D -->|Yes| E{Filter: Already in Cart?}
+    
+    %% Stage 3
+    E -->|No| F[DLRM: User Embedding Dot Product]
+    F --> G[NLP: Spice Token Parsing & Multiplier]
+    
+    %% Stage 4
+    G --> H{Budget <= 40% Cart?}
+    H -->|Yes| I(Apply Size Portions & Rating Multipliers)
+    I --> J((Return Top 5 Match))
 ```
 
 ### **Stage 1: Scaled Retrieval (FAISS HNSW + Simulated GraphSAGE)**
