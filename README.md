@@ -108,7 +108,7 @@ graph TD
     
     %% Stage 4
     G --> H{Budget <= 40% Cart?}
-    H -->|Yes| I(Apply Size Portions & Rating Multipliers)
+    H -->|Yes| I(Apply Size Portions, Rating Multipliers, & Category Complements)
     I --> J((Return Top 5 Match))
 ```
 
@@ -127,11 +127,14 @@ The remaining items run through a mathematically simulated Deep Learning Recomme
 2. **NLP Text Parsing**: The backend natively maps words inside the item's `Name` (e.g., "Spicy", "Chilly", "Masala") against the `user_spice_tolerance` factor.
 3. If the user profile favors heat and NLP detects "Spicy", the item receives a linear weight boost along with an injection of a custom sentiment string indicating the reason.
 
-### **Stage 4: Core Business Heuristics & Filters**
-Finally, Top items are slammed against hardcoded business rules generated purely inside Pandas DataFrames:
-1. **Budget Restriction**: Recommends are capped to **40% of the active Cart's Total Value**.
-2. **Package Rule**: If the cart is huge (> ₹600), the system actively boosts items marked `Size: Low` to balance meal portions.
-3. **Rating Multiplier**: Items with `RestRating >= 4.8` are flagged as a "Hero" item, and their rank score surges.
+### **Stage 4: Core Business Engine & Filters**
+Finally, Top items are slammed against hardcoded runtime business rules generated purely inside Pandas DataFrames:
+1. **4.1 Budget Restriction**: Recommends are capped to **40% of the active Cart's Total Value**.
+2. **4.2 Category Complementarity (Realism Logic)**: To prevent absurd cart combinations, the logic matrix parses the current `Cart_State`.
+    * It mathematically *penalizes* candidates of the exact same category (e.g. doesn't suggest a 3rd Main Course if the user bought 2).
+    * It massively *boosts* items from complementary categories. If a user adds a Starter, the Top 5 logic immediately prioritizes candidates in the Breads, Sides, and Beverage subsets.
+3. **4.3 Package Rule Up-Sells**: If the cart is huge (> ₹600), the system actively boosts items marked `Size: Low` to balance meal portions.
+4. **4.4 Hero Rating Multiplier**: Items with `RestRating >= 4.8` are flagged as a "Hero" item, and their rank score surges.
 
 ---
 
@@ -182,7 +185,7 @@ The system beautifully supports CRUD Operations for **Restaurant Owners**:
 
 Since heavy databases were ousted for execution speeds, flat CSV architecture ensures physical persistence upon container reboots.
 
-### `items.csv`
+### `items.csv` (Size: ~300 rows)
 Over 2000 dynamically populated permutations of dishes spanning multiple categories globally linked to mock locations.
 | Column | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -196,7 +199,7 @@ Over 2000 dynamically populated permutations of dishes spanning multiple categor
 | `Meal_Time` | STR | `Lunch` | Optional heuristical boundary metric. |
 | `Size` | STR | `High` | Size token utilized inside Stage 4 Balancing Logics. |
 
-### `restaurants.csv`
+### `restaurants.csv` (Size: 50 rows)
 | Column | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | `RestID` | STR | `R045` | Unique restaurant identifier binding the system. |
@@ -206,7 +209,7 @@ Over 2000 dynamically populated permutations of dishes spanning multiple categor
 | `Rating` | FLOAT | `4.8` | The critical boundary utilized via multipliers during Stage 4 Hero Logic. |
 | `Avg_Prep_Time_mins` | INT | `35` | Used optionally for delivery distance & time ranking heuristics. |
 
-### `users.csv`
+### `users.csv` (Size: 200 rows)
 | Column | Type | Example | Description |
 | :--- | :--- | :--- | :--- |
 | `UserID` | STR | `U0001` | Core authentication token utilized across the UI payload tracking events. |
@@ -216,7 +219,7 @@ Over 2000 dynamically populated permutations of dishes spanning multiple categor
 | `City_Tier` | INT | `1` | Heuristic marker utilized for baseline geo-distance threshold gating. |
 | `Price_Sensitivity` | FLOAT | `0.4` | Determines how tightly the Recommendation Engine clamps Top-Price suggestions. |
 
-### `interactions.csv`
+### `interactions.csv` (Size: ~900 rows)
 *(Automatically generated tracking log mapping user clickstream sequences)*
 | Column | Type | Example | Description |
 | :--- | :--- | :--- | :--- |

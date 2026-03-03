@@ -351,11 +351,13 @@ async def recommend(req: InferenceRequest):
     else:
         candidates['score'] = candidates['ItemID'].map(dlrm_scores)
 
-    # STAGE 4: Business Logic
+    # STAGE 4: Business Logic & Complementary Categories
     cart_value = 0
+    cart_categories = set()
     if req.cart_items:
         cart_details = items_df[items_df['ItemID'].isin(req.cart_items)]
         cart_value = cart_details['Price_INR'].sum()
+        cart_categories = set(cart_details['Category'].tolist())
     
     threshold = max(50, cart_value * 0.4) if cart_value > 0 else 999
     
@@ -367,8 +369,24 @@ async def recommend(req: InferenceRequest):
         candidates['score'] = 1.0
 
     if 'Size' not in candidates.columns: candidates['Size'] = 'Medium'
-
-    # REMOVED TIME LOGIC PER REQUEST
+    
+    # 4.2 Category Complementarity Logic (NEW)
+    for idx, row in candidates.iterrows():
+        cat = row['Category']
+        mult = 0.0
+        
+        # Penalize if they already have items of this exact category
+        if cat in cart_categories:
+            mult -= 2.0  # Don't recommend another Main Course if they have one
+            
+        # Boost complements
+        if 'Main Course' in cart_categories:
+            if cat in ['Bread', 'Sides']: mult += 3.0
+            elif cat == 'Beverage': mult += 1.5
+        elif 'Starter' in cart_categories:
+            if cat in ['Main Course', 'Beverage']: mult += 2.0
+            
+        candidates.at[idx, 'score'] += mult
     
     # 4.3 Package Size Up-sell Logic
     if cart_value < 200:
