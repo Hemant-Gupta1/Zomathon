@@ -6,6 +6,18 @@ Zomathon is an ultra-fast, multi-tenant digital food delivery platform equipped 
 
 ---
 
+## ✨ Key Platform Features
+
+- **Multi-Tenant Authentication**: Distinct login flows and dashboards for Customers and Restaurant Owners.
+- **Advanced Search & Filtering**: Debounced global search prioritizing ratings, with Veg/Non-Veg toggles and food category filters.
+- **Interactive Recommendation Engine**: AI-powered context-aware cross-selling (CSAO Rail) offering real-time pairings based on cart synergy. Supports user-driven **Recommendation Rejection** for feedback computing loops.
+- **Dynamic Owner Dashboard (CRUD)**: Restaurant Owners can natively create, update, and delete menu items directly from the UI. Changes instantly re-index the FAISS ML models and Redis caches.
+- **Intelligent Cart Logic**: Budget capping, portion size balancing, hero-rating boosting, and complementary category pairing.
+- **Zero-Latency Database Operations**: Eliminates traditional DB locks by loading full catalogs into Pandas Memory and writing asynchronously to persistent CSVs.
+- **Order History Tracking**: Fully tracks user clickstreams, cart additions, and final checkouts into memory-based logs dynamically.
+
+---
+
 ## 🏗️ 1. Architecture Overview
 
 The system runs entirely via Docker Compose in a robust, multi-container architecture. Below is a macro-level diagram of the overarching architecture and its communication flow:

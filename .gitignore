@@ -93,12 +93,4 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 
-# Data files #
-##############
-*.csv
-interactions.csv
-items.csv
-restaurants.csv
-users.csv
-
 ./things.txt
